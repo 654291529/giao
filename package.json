@@ -1,0 +1,23 @@
+{
+  "name": "gearcase",
+  "version": "1.0.0",
+  "description": "this is a UI frame.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evenyao/GearCase.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "evenyao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/evenyao/GearCase/issues"
+  },
+  "homepage": "https://github.com/evenyao/GearCase#readme"
+}
