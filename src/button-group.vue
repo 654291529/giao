@@ -5,7 +5,16 @@
 </template>
 
 <script>
-
+  export default {
+    mounted(){
+      for(let node of this.$el.children){
+        let name = node.nodeName.toLowerCase()
+        if(name !== 'button'){
+          console.warn(`gear-button-group 内部的子元素应该全是 gear-button，但是您所写的结构中包含了 ${name}，这样做会导致布局和样式的错误，请核对代码并修改。`)
+        }
+      }
+    }
+  }
 </script>
 
 <style lang="scss">
