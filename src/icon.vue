@@ -1,6 +1,6 @@
 <template>
   <svg class="gear-icon">
-    <use v-bind:xlink:href="`#i-${name}`"></use>
+    <use :xlink:href="`#i-${name}`"></use>
   </svg>
 </template>
 
