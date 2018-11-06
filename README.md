@@ -7,7 +7,7 @@
 
 ## 开始使用
 
-1. 添加 CSS 样式
+### 1. 添加 CSS 样式
   使用本 `UI` 框架前，请在 `CSS` 中开启 `border-box`
 
   ```
@@ -32,12 +32,12 @@
   ```
   此样式除 IE 外兼容所有现代浏览器。
 
-2. 安装 gear-case
+### 2. 安装 gear-case
   ```
   npm i -S gear-case
   ```
 
-3. 引入 gear-case
+### 3. 引入 gear-case
   ```
   import { Button, ButtonGroup, Icon } from 'gear-case'
   import 'gear-case/dist/index.css'
