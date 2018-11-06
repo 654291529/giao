@@ -78,9 +78,14 @@ describe('Input', () => {
         vm.$on(eventName, callback)
         // 触发 input 的 各类事件
         let event = new Event(eventName)
+        // 因为 target 是一个只读属性，只能通过 Object.defineProperty 来进行 value 的赋值
+        Object.defineProperty(
+            event, 'target', {
+              value: {value: 'hi'}, enumerable: true
+            })
         let inputElement = vm.$el.querySelector('input')
         inputElement.dispatchEvent(event)
-        expect(callback).to.have.been.calledWith(event)
+        expect(callback).to.have.been.calledWith('hi')
       })
     })
   })

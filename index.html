@@ -36,6 +36,10 @@
     .box {
       margin: 20px 0;
     }
+    .message {
+      display: inline-block;
+      margin-left: .5em;
+    }
   </style>
 </head>
 <body>
@@ -55,6 +59,10 @@
     <gear-input value="Error" error="出现错误了!"></gear-input>
   </div>
 
+  <div class="box">
+    <gear-input value="双向数据绑定" v-model="message"></gear-input>
+    <p class="message">{{message}}</p>
+  </div>
 
   <br>
   <br>
