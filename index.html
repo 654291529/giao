@@ -45,28 +45,68 @@
 <body>
 
 <div id="app">
-  <gear-row>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-  </gear-row>
+  <div>
+    <gear-row>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
 
-  <gear-row>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-  </gear-row>
+    <gear-row>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
 
-  <gear-row>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-    <gear-col></gear-col>
-  </gear-row>
+    <gear-row>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
 
-  <gear-row>
-    <gear-col :span="2"></gear-col>
-    <gear-col :span="22"></gear-col>
-  </gear-row>
+    <gear-row>
+      <gear-col :span="2"></gear-col>
+      <gear-col :span="22"></gear-col>
+    </gear-row>
+
+    <gear-row>
+      <gear-col :span="2"></gear-col>
+      <gear-col :span="20" :offset="2"></gear-col>
+    </gear-row>
+  </div>
+
+  <br>
+  <br>
+
+  <div style="border: 1px solid black;">
+    <gear-row :gutter="20">
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
+
+    <gear-row :gutter="20">
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
+
+    <gear-row :gutter="20">
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+      <gear-col></gear-col>
+    </gear-row>
+
+    <gear-row :gutter="20">
+      <gear-col :span="2"></gear-col>
+      <gear-col :span="22"></gear-col>
+    </gear-row>
+
+    <gear-row :gutter="20">
+      <gear-col :span="2"></gear-col>
+      <gear-col :span="20" :offset="2"></gear-col>
+    </gear-row>
+  </div>
 
   <br>
   <br>
