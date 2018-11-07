@@ -15,7 +15,7 @@
     computed: {
       rowStyle () {
         let gutter = this.gutter
-        return { marginLeft: -gutter/2 + 'px', marginRight: -gutter/2 + 'px' }
+        return { marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px' }
       }
     },
     mounted () {
