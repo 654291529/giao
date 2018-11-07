@@ -32,7 +32,11 @@
       },
       error: {
         type: String,
-
+      }
+    },
+    data() {
+      return {
+        error: this.error
       }
     }
   }

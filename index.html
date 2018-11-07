@@ -176,6 +176,9 @@
     <gear-input value="双向数据绑定" v-model="message"></gear-input>
     <p class="message">{{message}}</p>
   </div>
+  <div class="box">
+    <gear-input :error="error" @input="inputValueChange" v-model="message2"></gear-input>
+  </div>
 
   <br>
   <br>

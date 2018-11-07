@@ -19,18 +19,27 @@ new Vue({
     loading1: false,
     loading2: false,
     loading3: false,
-    message: '双向数据绑定'
+    message: '双向数据绑定',
+    message2: '',
+    error: ''
   },
   created() {
-    setTimeout(()=> {
-      let event = new Event('change')
-      let inputElement = this.$el.querySelector('input')
-      inputElement.dispatchEvent(event)
-    },3000)
+    // setTimeout(()=> {
+    //   let event = new Event('change')
+    //   let inputElement = this.$el.querySelector('input')
+    //   inputElement.dispatchEvent(event)
+    // },3000)
   },
   methods: {
     inputChange(e) {
       console.log(e)
+    },
+    inputValueChange(){
+      if(this.message2.length > 5){
+        this.error = '不能超过5个字符！'
+      } else {
+        this.error = ''
+      }
     }
   }
 });
