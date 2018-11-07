@@ -39,10 +39,10 @@
         return [
           span && `col-${span}`,
           offset && `offset-${offset}`,
-          ... (phone && [`col-phone-${phone.span}`]),
-          ... (pad && [`col-pad-${pad.span}`]),
-          ... (narrowPc && [`col-narrow-pc-${narrowPc.span}`]),
-          ... (widePc && [`col-wide-pc-${widePc.span}`]),
+          ... (phone ? [`col-phone-${phone.span}`]: []),
+          ... (pad ? [`col-pad-${pad.span}`]: []),
+          ... (narrowPc ? [`col-narrow-pc-${narrowPc.span}`]: []),
+          ... (widePc ? [`col-wide-pc-${widePc.span}`]: []),
         ]
       },
       colStyle () {
