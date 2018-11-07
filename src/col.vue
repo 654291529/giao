@@ -7,15 +7,25 @@
 </template>
 
 <script>
+  let validator = (value) => {
+    let keys = Object.keys(value)
+    let valid = true
+    keys.forEach(key => {
+      if(!['span', 'offset'].includes(key)){
+        valid = false
+      }
+    })
+    return valid
+  }
   export default {
     name: 'GearCol',
     props: {
-      span: {
-        type: [Number, String]
-      },
-      offset: {
-        type: [Number, String]
-      }
+      span: { type: [Number, String] },
+      offset: { type: [Number, String] },
+      phone: { type: Object, validator, },
+      pad: { type: Object, validator, },
+      narrowPc: { type: Object, validator, },
+      widePc: { type: Object, validator, },
     },
     data() {
       return {
@@ -25,9 +35,15 @@
     },
     computed: {
       colClass () {
-        let span = this.span
-        let offset = this.offset
-        return [span && `col-${span}`, offset && `offset-${offset}`]
+        let { span, offset, phone, pad, narrowPc, widePc } = this
+        return [
+          span && `col-${span}`,
+          offset && `offset-${offset}`,
+          ... (phone && [`col-phone-${phone.span}`]),
+          ... (pad && [`col-pad-${pad.span}`]),
+          ... (narrowPc && [`col-narrow-pc-${narrowPc.span}`]),
+          ... (widePc && [`col-wide-pc-${widePc.span}`]),
+        ]
       },
       colStyle () {
         return {
@@ -41,10 +57,10 @@
 
 <style lang="scss" scoped>
   .col {
-    /*height: 100px;*/
-    /*background: lightblue;*/
+    height: 100px;
+    background: lightblue;
     /*width: 50%;*/
-    /*border: 1px solid grey;*/
+    border: 1px solid grey;
 
 
     // 声明 class 前缀
@@ -60,6 +76,70 @@
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      $class-prefix: col-phone-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;
+        }
+      }
+
+      $class-prefix: offset-phone-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
+        }
+      }
+    }
+
+    @media (min-width: 577px) and (max-width: 768px) {
+      $class-prefix: col-pad-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;
+        }
+      }
+
+      $class-prefix: offset-pad-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
+        }
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 992px) {
+      $class-prefix: col-narrow-pc-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;
+        }
+      }
+
+      $class-prefix: offset-narrow-pc-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
+        }
+      }
+    }
+
+    @media (min-width: 1201px) {
+      $class-prefix: col-wide-pc-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;
+        }
+      }
+
+      $class-prefix: offset-wide-pc-;
+      @for $n from 1 through 24 {
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;
+        }
       }
     }
   }
