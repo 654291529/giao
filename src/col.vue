@@ -1,8 +1,8 @@
 <template>
   <div class="col" :class="colClass" :style="colStyle">
-    <div style="border: 1px solid green; height: 100px; background: lightblue;">
+    <!--<div style="border: 1px solid green; height: 100px; background: lightblue;">-->
       <slot></slot>
-    </div>
+    <!--</div>-->
   </div>
 </template>
 
@@ -41,10 +41,10 @@
 
 <style lang="scss" scoped>
   .col {
-    height: 100px;
+    /*height: 100px;*/
     /*background: lightblue;*/
-    width: 50%;
-    border: 1px solid grey;
+    /*width: 50%;*/
+    /*border: 1px solid grey;*/
 
 
     // 声明 class 前缀
