@@ -3,11 +3,15 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
+import Row from './row'
+import Col from './col'
 
 Vue.component('gear-button', Button)
 Vue.component('gear-icon', Icon)
 Vue.component('gear-button-group', ButtonGroup)
 Vue.component('gear-input', Input)
+Vue.component('gear-row', Row)
+Vue.component('gear-col', Col)
 
 new Vue({
   el: '#app',

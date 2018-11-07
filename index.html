@@ -45,6 +45,31 @@
 <body>
 
 <div id="app">
+  <gear-row>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+  </gear-row>
+
+  <gear-row>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+  </gear-row>
+
+  <gear-row>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+    <gear-col></gear-col>
+  </gear-row>
+
+  <gear-row>
+    <gear-col :span="2"></gear-col>
+    <gear-col :span="22"></gear-col>
+  </gear-row>
+
+  <br>
+  <br>
   <div class="box">
     <gear-input value="Disabled" :disabled="true"></gear-input>
     <gear-input value="Readonly" :readonly="true"></gear-input>
