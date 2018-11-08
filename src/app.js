@@ -5,6 +5,11 @@ import ButtonGroup from './button-group'
 import Input from './input'
 import Row from './row'
 import Col from './col'
+import Layout from './layout'
+import Header from './header'
+import Sider from './sider'
+import Content from './content'
+import Footer from './footer'
 
 Vue.component('gear-button', Button)
 Vue.component('gear-icon', Icon)
@@ -12,6 +17,12 @@ Vue.component('gear-button-group', ButtonGroup)
 Vue.component('gear-input', Input)
 Vue.component('gear-row', Row)
 Vue.component('gear-col', Col)
+Vue.component('gear-layout', Layout)
+Vue.component('gear-header', Header)
+Vue.component('gear-sider', Sider)
+Vue.component('gear-content', Content)
+Vue.component('gear-footer', Footer)
+
 
 new Vue({
   el: '#app',
