@@ -41,11 +41,36 @@
       margin-left: .5em;
     }
   </style>
+  <style>
+    .demo {
+      background: #ddd;
+      border: 1px solid #666;
+      height: 100px;
+    }
+  </style>
 
 </head>
 <body>
 
 <div id="app">
+
+  <gear-row>
+    <gear-col span="24" :pad="{span:12}" :narrow-pc="{span:8}">
+      <div class="demo"></div>
+    </gear-col>
+    <gear-col span="24" :pad="{span:12}" :narrow-pc="{span:8}">
+      <div class="demo"></div>
+    </gear-col>
+    <gear-col span="24" :pad="{span:12}" :narrow-pc="{span:8}">
+      <div class="demo"></div>
+    </gear-col>
+    <gear-col span="24" :pad="{span:12}" :narrow-pc="{span:8}">
+      <div class="demo"></div>
+    </gear-col>
+    <gear-col span="24" :pad="{span:12}" :narrow-pc="{span:8}">
+      <div class="demo"></div>
+    </gear-col>
+  </gear-row>
 
   <div style="border: 1px solid black;">
     <gear-row :gutter="20">

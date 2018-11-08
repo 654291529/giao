@@ -38,7 +38,7 @@
       return {
         error: this.error
       }
-    }
+    },
   }
 </script>
 
