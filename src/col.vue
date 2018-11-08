@@ -45,6 +45,12 @@
           ... (narrowPc ? [`col-narrow-pc-${narrowPc.span}`]: []),
           ... (pc ? [`col-pc-${pc.span}`]: []),
           ... (widePc ? [`col-wide-pc-${widePc.span}`]: []),
+
+          ... (phone ? [`offset-phone-${phone.offset}`]: []),
+          ... (pad ? [`offset-pad-${pad.offset}`]: []),
+          ... (narrowPc ? [`offset-narrow-pc-${narrowPc.offset}`]: []),
+          ... (pc ? [`offset-pc-${pc.offset}`]: []),
+          ... (widePc ? [`offset-wide-pc-${widePc.offset}`]: []),
         ]
       },
       colStyle () {
