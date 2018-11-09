@@ -42,27 +42,29 @@
     }
   </style>
   <style>
-    .demo {
-      background: #ddd;
-      border: 1px solid #666;
+    .sider {
+      background: #333;
+      width: 200px;
+    }
+    .header {
+      background: #999;
       height: 100px;
     }
-  </style>
-  <style>
-    .layout-demo {
-      border: 1px solid #666;
-      min-height: 100px;
+    .footer {
+      background: #ccc;
+      height: 50px;
     }
   </style>
+
 </head>
 <body>
 
 <div id="app">
 
   <gear-layout style="height: 100vh;">
-    <gear-header class="layout-demo">header</gear-header>
-    <gear-content class="layout-demo">content</gear-content>
-    <gear-footer class="layout-demo">footer</gear-footer>
+    <gear-header>header</gear-header>
+    <gear-content>content</gear-content>
+    <gear-footer>footer</gear-footer>
   </gear-layout>
 
   <br>
