@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: 'GearFooter',
+    mounted () {
+
+    }
+  }
+</script>
+
 <style lang="scss" scoped>
   .footer {
 

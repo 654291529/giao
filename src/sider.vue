@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+  export default {
+    name: 'GearSider',
+    mounted () {
+
+    }
+  }
+</script>
+
 <style lang="scss" scoped>
   .sider {
 

@@ -48,16 +48,45 @@
       height: 100px;
     }
   </style>
-
+  <style>
+    .layout-demo {
+      border: 1px solid #666;
+      min-height: 100px;
+    }
+  </style>
 </head>
 <body>
 
 <div id="app">
 
-  <gear-layout>
-    <gear-header></gear-header>
-    <gear-content></gear-content>
-    <gear-footer></gear-footer>
+  <gear-layout style="height: 100vh;">
+    <gear-header class="layout-demo">header</gear-header>
+    <gear-content class="layout-demo">content</gear-content>
+    <gear-footer class="layout-demo">footer</gear-footer>
+  </gear-layout>
+
+  <br>
+  <br>
+
+  <gear-layout style="height: 100vh;">
+    <gear-header class="layout-demo">header</gear-header>
+    <gear-layout>
+      <gear-sider class="layout-demo">sider</gear-sider>
+      <gear-content class="layout-demo">content</gear-content>
+    </gear-layout>
+    <gear-footer class="layout-demo">footer</gear-footer>
+  </gear-layout>
+
+  <br>
+  <br>
+
+  <gear-layout style="height: 100vh;">
+    <gear-sider class="layout-demo">sider</gear-sider>
+    <gear-layout>
+      <gear-header class="layout-demo">header</gear-header>
+      <gear-content class="layout-demo">content</gear-content>
+      <gear-footer class="layout-demo">footer</gear-footer>
+    </gear-layout>
   </gear-layout>
 
   <br>
