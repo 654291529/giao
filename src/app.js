@@ -44,7 +44,8 @@ new Vue({
     //   let inputElement = this.$el.querySelector('input')
     //   inputElement.dispatchEvent(event)
     // },3000)
-    this.$toast()
+
+    // this.$toast('我是 message')
   },
   methods: {
     inputChange(e) {
