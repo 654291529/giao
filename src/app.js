@@ -61,17 +61,25 @@ new Vue({
     showToast(){
       // toast API
       this.$toast('this is message', {
+        position: 'middle',
+        autoClose: false,
+        autoCloseDelay: 1,
         closeButton: {
           text: '关闭',
           callback(){
             console.log('callback()回调，关闭被点击了')
           }
-        }
+        },
+        enableHtml: false,
       })
     },
     // toast 没有 closeButton
     showToastNoClose() {
-      this.$toast('<strong>message</strong>',{ enableHtml: false })
+      this.$toast('this is message 2', {
+        autoClose: true,
+        autoCloseDelay: 10,
+        enableHtml: false,
+      })
     }
   }
 });
