@@ -60,7 +60,7 @@ new Vue({
     // toast 有 closeButton
     showToast(){
       // toast API
-      this.$toast('this is methis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagessagethis is messagethis is messagethis is messagethis is messagethis is messagethis is message', {
+      this.$toast('this is message', {
         closeButton: {
           text: '关闭',
           callback(){

@@ -1,7 +1,9 @@
 <template>
   <div class="toast" ref="wrapper">
-    <slot v-if="!enableHtml"></slot>
-    <div v-else v-html="$slots.default[0]"></div>
+    <div class="message">
+      <slot v-if="!enableHtml"></slot>
+      <div v-else v-html="$slots.default[0]"></div>
+    </div>
 
     <div class="line" ref="line"></div>
     <span class="close" v-if="closeButton" @click="onClickClose">
@@ -44,16 +46,23 @@
       }
     },
     mounted () {
-      if(this.autoClose) {
-        setTimeout(() => {
-          this.close()
-        }, this.autoCloseDelay * 1000)
-      }
-      this.$nextTick(() => {
-        this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
-      })
+      this.updateStyles()
+      this.execAutoClose()
     },
     methods: {
+      // updateStyles 方法修正了 关闭左边 line 高度的显示问题
+      updateStyles () {
+        this.$nextTick(() => {
+          this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+        })
+      },
+      execAutoClose () {
+        if(this.autoClose) {
+          setTimeout(() => {
+            this.close()
+          }, this.autoCloseDelay * 1000)
+        }
+      },
       close () {
         this.$el.remove()
         this.$destroy()
@@ -79,6 +88,9 @@
     color: white;
     background: $toast-bg; border-radius: 4px; box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
     padding: 0 16px;
+    .message {
+      padding: 8px 0;
+    }
 
     .close {
       padding-left: 16px;
