@@ -10,6 +10,8 @@ import Header from './header'
 import Sider from './sider'
 import Content from './content'
 import Footer from './footer'
+import Toast from './toast'
+import plugin from './plugin'
 
 Vue.component('gear-button', Button)
 Vue.component('gear-icon', Icon)
@@ -22,6 +24,8 @@ Vue.component('gear-header', Header)
 Vue.component('gear-sider', Sider)
 Vue.component('gear-content', Content)
 Vue.component('gear-footer', Footer)
+Vue.component('gear-toast', Toast)
+Vue.use(plugin)
 
 
 new Vue({
@@ -40,6 +44,7 @@ new Vue({
     //   let inputElement = this.$el.querySelector('input')
     //   inputElement.dispatchEvent(event)
     // },3000)
+    this.$toast()
   },
   methods: {
     inputChange(e) {
@@ -51,6 +56,9 @@ new Vue({
       } else {
         this.error = ''
       }
+    },
+    showToast(){
+      this.$toast('当前功能不稳定，如果遇到 bug 请改变该功能')
     }
   }
 });
