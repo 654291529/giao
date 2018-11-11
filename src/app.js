@@ -45,7 +45,6 @@ new Vue({
     //   inputElement.dispatchEvent(event)
     // },3000)
 
-    // this.$toast('我是 message')
   },
   methods: {
     inputChange(e) {
@@ -58,8 +57,21 @@ new Vue({
         this.error = ''
       }
     },
+    // toast 有 closeButton
     showToast(){
-      this.$toast('当前功能不稳定，如果遇到 bug 请改变该功能')
+      // toast API
+      this.$toast('this is methis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagethis is messagessagethis is messagethis is messagethis is messagethis is messagethis is messagethis is message', {
+        closeButton: {
+          text: '关闭',
+          callback(){
+            console.log('callback()回调，关闭被点击了')
+          }
+        }
+      })
+    },
+    // toast 没有 closeButton
+    showToastNoClose() {
+      this.$toast('<strong>message</strong>',{ enableHtml: false })
     }
   }
 });

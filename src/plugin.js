@@ -3,9 +3,11 @@ import  Toast from './toast'
 
 export default {
   install (Vue, options) {
-    Vue.prototype.$toast = function(message) {
+    Vue.prototype.$toast = function(message, toastOptions) {
       var Constructor = Vue.extend(Toast)
-      let toast = new Constructor()
+      let toast = new Constructor({
+        propsData: toastOptions
+      })
 
       // 给 toast 传递默认插槽内容
       toast.$slots.default = [message]
