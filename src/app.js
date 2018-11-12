@@ -58,10 +58,10 @@ new Vue({
       }
     },
     // toast 有 closeButton
-    showToast(){
+    showToast1(){
       // toast API
-      this.$toast('this is message', {
-        position: 'middle',
+      this.$toast('this is message top', {
+        position: 'top',
         autoClose: false,
         autoCloseDelay: 1,
         closeButton: {
@@ -74,8 +74,17 @@ new Vue({
       })
     },
     // toast 没有 closeButton
-    showToastNoClose() {
-      this.$toast('this is message 2', {
+    showToast2() {
+      this.$toast('this is message middle', {
+        position: 'middle',
+        autoClose: true,
+        autoCloseDelay: 10,
+        enableHtml: false,
+      })
+    },
+    showToast3() {
+      this.$toast('this is message bottom', {
+        position: 'bottom',
         autoClose: true,
         autoCloseDelay: 10,
         enableHtml: false,
