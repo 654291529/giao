@@ -6,10 +6,10 @@
         <div v-else v-html="$slots.default[0]"></div>
       </div>
 
-      <div class="line" ref="line"></div>
+      <div class="line" v-if="closeButton" ref="line"></div>
       <span class="close" v-if="closeButton" @click="onClickClose">
       {{closeButton.text}}
-    </span>
+      </span>
     </div>
   </div>
 </template>
@@ -25,13 +25,12 @@
     props: {
       // 自动关闭属性
       autoClose: {
-        type: Boolean,
-        default: true
-      },
-      // 自动关闭延时
-      autoCloseDelay: {
-        type: Number,
-        default: 3
+        // Boolean 用来关闭开启， Number 用来设置自动关闭时间并自行开启
+        type: [Boolean, Number],
+        default: 3,
+        validator (value) {
+          return value === false || typeof value === 'number';
+        }
       },
       // 关闭属性
       closeButton: {
@@ -78,7 +77,7 @@
         if(this.autoClose) {
           setTimeout(() => {
             this.close()
-          }, this.autoCloseDelay * 1000)
+          }, this.autoClose * 1000)
         }
       },
       close () {
