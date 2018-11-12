@@ -32,9 +32,9 @@
           return value === false || typeof value === 'number';
         }
       },
-      // 关闭属性
+      // 关闭按钮属性
       closeButton: {
-        type: Object,
+        type: [Object, Boolean],
         // default 值为一个对象时 必须用函数
         default: () => {
           return {
@@ -67,14 +67,16 @@
       }
     },
     methods: {
-      // updateStyles 方法修正了 关闭左边 line 高度的显示问题
+      // updateStyles 方法修正了 关闭左边 line 高度的显示问题 且有 closeButton 时才去执行 updateStyles
       updateStyles () {
-        this.$nextTick(() => {
-          this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
-        })
+        if (this.closeButton) {
+          this.$nextTick(() => {
+            this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
+          })
+        }
       },
       execAutoClose () {
-        if(this.autoClose) {
+        if (this.autoClose) {
           setTimeout(() => {
             this.close()
           }, this.autoClose * 1000)

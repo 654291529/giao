@@ -78,6 +78,7 @@ new Vue({
         position: 'middle',
         autoClose: 1000,
         enableHtml: false,
+        closeButton: false
       })
     },
     showToast3() {
