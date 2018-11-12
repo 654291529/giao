@@ -1,14 +1,16 @@
 <template>
-  <div class="toast" ref="wrapper" :class="toastClasses">
-    <div class="message">
-      <slot v-if="!enableHtml"></slot>
-      <div v-else v-html="$slots.default[0]"></div>
-    </div>
+  <div class="wrapper" :class="toastClasses">
+    <div class="toast" ref="toast">
+      <div class="message">
+        <slot v-if="!enableHtml"></slot>
+        <div v-else v-html="$slots.default[0]"></div>
+      </div>
 
-    <div class="line" ref="line"></div>
-    <span class="close" v-if="closeButton" @click="onClickClose">
+      <div class="line" ref="line"></div>
+      <span class="close" v-if="closeButton" @click="onClickClose">
       {{closeButton.text}}
     </span>
+    </div>
   </div>
 </template>
 
@@ -69,7 +71,7 @@
       // updateStyles 方法修正了 关闭左边 line 高度的显示问题
       updateStyles () {
         this.$nextTick(() => {
-          this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+          this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
         })
       },
       execAutoClose () {
@@ -102,27 +104,29 @@
     0% { opacity: 0; transform: translateY(100%)}
     100% { opacity: 1; transform: translateY(0%)}
   }
+  .wrapper {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    &.position-top {
+      top: 0;
+    }
+    &.position-bottom {
+      bottom: 0;
+    }
+    &.position-middle {
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
   .toast {
     animation: fade-in .5s;
     font-size: $font-size; line-height: 1.8; min-height: $toast-min-height;
-    position: fixed; left: 50%;
     display: flex; align-items: center;
     color: white;
     background: $toast-bg; border-radius: 4px; box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
     padding: 0 16px;
 
-    &.position-top {
-      top: 0;
-      transform: translateX(-50%);
-    }
-    &.position-bottom {
-      bottom: 0;
-      transform: translateX(-50%);
-    }
-    &.position-middle {
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
 
     .message {
       padding: 8px 0;
