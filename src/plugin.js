@@ -9,7 +9,14 @@ export default {
       if (currentToast) {
         currentToast.close()
       }
-      currentToast = createToast({ Vue, message, propsData: toastOptions }) //新建一个函数
+      currentToast = createToast({
+        Vue,
+        message,
+        propsData: toastOptions,
+        onClose: () => {
+          currentToast = null
+        }
+      }) //新建一个函数
     }
   }
 }
@@ -17,7 +24,7 @@ export default {
 
 
 /* helpers */
-function createToast({ Vue, message, propsData }) {
+function createToast({ Vue, message, propsData, onClose }) {
   let Constructor = Vue.extend(Toast)
   let toast = new Constructor({ propsData })
 
@@ -26,6 +33,7 @@ function createToast({ Vue, message, propsData }) {
 
   // mount
   toast.$mount()
+  toast.$on('close', onClose )
 
   // 将元素放置到 body
   document.body.appendChild(toast.$el)
