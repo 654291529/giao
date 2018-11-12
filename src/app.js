@@ -63,7 +63,6 @@ new Vue({
       this.$toast('this is message top', {
         position: 'top',
         autoClose: false,
-        autoCloseDelay: 1,
         closeButton: {
           text: '关闭',
           callback(){
@@ -77,16 +76,14 @@ new Vue({
     showToast2() {
       this.$toast('this is message middle', {
         position: 'middle',
-        autoClose: true,
-        autoCloseDelay: 10,
+        autoClose: 1000,
         enableHtml: false,
       })
     },
     showToast3() {
       this.$toast('this is message bottom', {
         position: 'bottom',
-        autoClose: true,
-        autoCloseDelay: 10,
+        autoClose: 3,
         enableHtml: false,
       })
     }
