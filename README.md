@@ -5,6 +5,14 @@
 
 这是本人在学习 Vue 过程中所做的一个基于 Vue 的 UI 框架，希望能对你也同样有所帮助。目前还在持续更新中，过程中某些组件可能暂时无法使用，尽情谅解。
 
+## 现有轮子
+- Button
+- ButtonGroup
+- Input
+- Grid
+- Layout
+- Toast
+
 ## 开始使用
 
 ### 1. 添加 CSS 样式
@@ -39,7 +47,7 @@
 
 ### 3. 引入 gear-case
   ```
-  import { Button, ButtonGroup, Icon } from 'gear-case'
+  import { ButtonGroup, Button, Icon, Input , Row, Col, Layout, Header, Sider, Content, Footer, Toast, plugin } from 'gear-case'
   import 'gear-case/dist/index.css'
 
   export default {
@@ -53,6 +61,7 @@
 ## 文档
 ### 构建中
 
-## 贡献代码
-### 作者
+## 联系我
 [evenyao](//evenyao.com)
+
+![](https://evenyao-1257191344.cos.ap-chengdu.myqcloud.com/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
