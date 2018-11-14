@@ -46,7 +46,9 @@ new Vue({
     loading3: false,
     message: '双向数据绑定',
     message2: '',
-    error: ''
+    error: '',
+
+    selectedTab: 'sports',
   },
   created() {
     // setTimeout(()=> {

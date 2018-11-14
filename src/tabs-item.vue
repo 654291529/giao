@@ -7,6 +7,12 @@
 <script>
   export default {
     name: 'GearTabsItem',
+    props: {
+      disabled: {
+        type: Boolean,
+        default: false,
+      }
+    }
   }
 </script>
 

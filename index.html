@@ -57,6 +57,38 @@
 
 <div id="app">
 
+
+  <gear-tabs :selected.sync="selectedTab">
+    <gear-tabs-nav>
+      <templeat slot="actions">
+        <button>设置</button>
+      </templeat>
+      <gear-tabs-item name="women">
+        <gear-icon name="setting"></gear-icon>美女
+      </gear-tabs-item>
+      <gear-tabs-item name="it" disabled>
+        数码
+      </gear-tabs-item>
+      <gear-tabs-item name="sports">
+        体育
+      </gear-tabs-item>
+    </gear-tabs-nav>
+    <gear-tabs-content>
+      <gear-tabs-pane name="women">
+        美女相关资讯
+      </gear-tabs-pane>
+      <gear-tabs-pane name="it">
+        数码相关资讯
+      </gear-tabs-pane>
+      <gear-tabs-pane name="sports">
+        体育相关资讯
+      </gear-tabs-pane>
+    </gear-tabs-content>
+  </gear-tabs>
+
+  <br>
+  <br>
+
   <button @click="showToast1">top</button>
   <button @click="showToast2">middle</button>
   <button @click="showToast3">bottom</button>
