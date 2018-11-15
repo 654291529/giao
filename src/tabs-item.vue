@@ -8,6 +8,11 @@
   export default {
     name: 'GearTabsItem',
     inject: ['eventBus'],  // inject 注入
+    data () {
+      return {
+        active: false
+      }
+    },
     props: {
       disabled: {
         type: Boolean,
@@ -18,10 +23,16 @@
         required: true,
       }
     },
-    created() {
+    created () {
       // console.log('tabs 给 tabs-item 的 eventBus')
       this.eventBus.$on('update:selected', (name) => {
-        console.log(name)
+        if (name === this.name) {
+          console.log(`nav ${this.name}被选中了`)
+          this.active = true
+        } else {
+          console.log(`nav ${this.name}未被选中了`)
+          this.active = false
+        }
       })
     },
     methods: {
@@ -34,6 +45,7 @@
 
 <style lang="scss" scoped>
   .tabs-item {
-
+    flex-shrink: 0;
+    padding: 0 2em;
   }
 </style>

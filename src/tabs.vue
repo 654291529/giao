@@ -21,18 +21,21 @@
         }
       }
     },
-    data() {
+    data () {
       return {
         eventBus: new Vue()
       }
     },
-    provide() {
+    provide () {
       return {
         eventBus: this.eventBus
       }
     },
-    created() {
+    created () {
       // this.$emit('update:selected','xxx')
+    },
+    mounted () {
+      this.eventBus.$emit('update:selected', this.selected)
     }
   }
 </script>
