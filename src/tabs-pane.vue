@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-pane">
+  <div class="tabs-pane" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -19,14 +19,20 @@
         required: true,
       }
     },
+    // 计算属性监听 active 改变 class
+    computed: {
+      classes () {
+        return {
+          active: this.active
+        }
+      }
+    },
     created () {
       // console.log('tabs 给 tabs-pane 的 eventBus')
       this.eventBus.$on('update:selected', (name) => {
-        if(name === this.name){
-          console.log(`pane ${this.name}被选中了`)
+        if (name === this.name) {
           this.active = true
         } else {
-          console.log(`pane ${this.name}未被选中了`)
           this.active = false
         }
       })
@@ -36,6 +42,8 @@
 
 <style lang="scss" scoped>
   .tabs-pane {
-
+    &.active {
+      background: #cccccc;
+    }
   }
 </style>

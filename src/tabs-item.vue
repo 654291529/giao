@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx">
+  <div class="tabs-item" @click="xxx" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -23,14 +23,20 @@
         required: true,
       }
     },
+    // 计算属性监听 active 改变 class
+    computed: {
+      classes () {
+        return {
+          active: this.active
+        }
+      }
+    },
     created () {
       // console.log('tabs 给 tabs-item 的 eventBus')
       this.eventBus.$on('update:selected', (name) => {
         if (name === this.name) {
-          console.log(`nav ${this.name}被选中了`)
           this.active = true
         } else {
-          console.log(`nav ${this.name}未被选中了`)
           this.active = false
         }
       })
@@ -47,5 +53,8 @@
   .tabs-item {
     flex-shrink: 0;
     padding: 0 2em;
+    &.active {
+      background: #cccccc;
+    }
   }
 </style>
