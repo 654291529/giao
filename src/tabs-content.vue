@@ -7,6 +7,11 @@
 <script>
   export default {
     name: 'GearTabsContent',
+    inject: ['eventBus'],  // inject 注入
+    created() {
+      // console.log('tabs 给 tabs-content 的 eventBus')
+
+    }
   }
 </script>
 

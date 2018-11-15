@@ -5,10 +5,11 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   export default {
     name: 'GearTabs',
     props: {
-      seleted: {
+      selected: {
         type: String,
         required: true
       },
@@ -18,6 +19,16 @@
         validator (value) {
           return ['Horizontal','vertical'].indexOf(value) >= 0
         }
+      }
+    },
+    data() {
+      return {
+        eventBus: new Vue()
+      }
+    },
+    provide() {
+      return {
+        eventBus: this.eventBus
       }
     },
     created() {
