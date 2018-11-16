@@ -14,7 +14,8 @@
     inject: ['eventBus'],  // inject 注入
     created() {
       this.eventBus.$on('update:selected',(item, vm) => {
-        console.log(vm.$el)
+        let {width, height, top, left} = vm.$el.getBoundingClientRect()
+        console.log(width, height, top, left)
       })
     }
   }
