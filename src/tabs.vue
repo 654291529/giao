@@ -38,10 +38,10 @@
       // 找到 item
       this.$children.forEach((vm) => {
         if (vm.$options.name === 'GearTabsNav') {
-          vm.$children.forEach((item) => {
-            if (item.$options.name === 'GearTabsItem' && item.name === this.selected) {
-              console.log(item.$el)
-              this.eventBus.$emit('update:selected', this.selected, item)
+          vm.$children.forEach((childVm) => {
+            if (childVm.$options.name === 'GearTabsItem' && childVm.name === this.selected) {
+              console.log(childVm.$el)
+              this.eventBus.$emit('update:selected', this.selected, childVm)
             }
           })
         }

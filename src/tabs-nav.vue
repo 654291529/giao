@@ -14,7 +14,6 @@
     inject: ['eventBus'],  // inject 注入
     created() {
       this.eventBus.$on('update:selected',(item, vm) => {
-        console.log(item)
         console.log(vm.$el)
       })
     }
