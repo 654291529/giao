@@ -28,7 +28,6 @@
       }
     },
     created () {
-      // console.log('tabs 给 tabs-pane 的 eventBus')
       this.eventBus.$on('update:selected', (name) => {
         if (name === this.name) {
           this.active = true

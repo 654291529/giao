@@ -12,8 +12,7 @@
     name: 'GearTabsNav',
     inject: ['eventBus'],  // inject 注入
     created() {
-      // 爷给父的 eventBus
-      // console.log('tabs 给 tabs-nav 的 eventBus')
+
     }
   }
 </script>
