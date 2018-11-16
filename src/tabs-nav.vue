@@ -12,10 +12,11 @@
   export default {
     name: 'GearTabsNav',
     inject: ['eventBus'],  // inject 注入
-    created() {
+    mounted() {
       this.eventBus.$on('update:selected',(item, vm) => {
         let {width, height, top, left} = vm.$el.getBoundingClientRect()
         console.log(width, height, top, left)
+        this.$refs.line.style.width = `${width}px`
       })
     }
   }
