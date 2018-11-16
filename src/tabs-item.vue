@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx" :class="classes">
+  <div class="tabs-item" @click="handleClick" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -21,13 +21,15 @@
       name: {
         type: [String, Number],
         required: true,
-      }
+      },
+
     },
     // 计算属性监听 active 改变 class
     computed: {
       classes () {
         return {
-          active: this.active
+          active: this.active,
+          disabled: this.disabled
         }
       }
     },
@@ -41,7 +43,8 @@
       })
     },
     methods: {
-      xxx() {
+      handleClick () {
+        if (this.disabled) { return }
         this.eventBus.$emit('update:selected', this.name, this)
       }
     }
@@ -50,6 +53,7 @@
 
 <style lang="scss" scoped>
   $theme-color: #70b0f4;
+  $disabled-color: #DDD;
   .tabs-item {
     flex-shrink: 0;
     padding: 0 2em;
@@ -59,6 +63,9 @@
     align-items: center;
     &.active {
       color: $theme-color;
+    }
+    &.disabled {
+      color: $disabled-color;
     }
   }
 </style>
