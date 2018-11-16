@@ -35,7 +35,17 @@
       // this.$emit('update:selected','xxx')
     },
     mounted () {
-      this.eventBus.$emit('update:selected', this.selected)
+      // 找到 item
+      this.$children.forEach((vm) => {
+        if (vm.$options.name === 'GearTabsNav') {
+          vm.$children.forEach((item) => {
+            if (item.$options.name === 'GearTabsItem' && item.name === this.selected) {
+              console.log(item.$el)
+              this.eventBus.$emit('update:selected', this.selected, item)
+            }
+          })
+        }
+      })
     }
   }
 </script>
