@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-nav">
+  <div class="tabs-nav" ref="nav">
     <slot></slot>
     <div class="line" ref="line"></div>
     <div class="actions-wrapper">
@@ -15,10 +15,13 @@
     mounted() {
       this.eventBus.$on('update:selected',(item, vm) => {
         let {width, height, top, left} = vm.$el.getBoundingClientRect()
-
+        console.log(this.$refs.nav.getBoundingClientRect().x)
+        // 修正外边框有 margin 时候 line 的显示 bug
+        let x = this.$refs.nav.getBoundingClientRect().x
         console.log(width, height, top, left)
         this.$refs.line.style.width = `${width}px`
-        this.$refs.line.style.left = `${left}px`
+        this.$refs.line.style.left = `${left - x}px`
+        console.log(this.$refs.line.style.left)
       })
     }
   }
