@@ -35,6 +35,12 @@
       // this.$emit('update:selected','xxx')
     },
     mounted () {
+      if (this.$children.length === 0) {
+        // throw new Error('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
+        console &&  console.warn &&
+        console.warn('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
+      }
+
       // 找到 item
       this.$children.forEach((vm) => {
         if (vm.$options.name === 'GearTabsNav') {

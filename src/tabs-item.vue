@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="handleClick" :class="classes">
+  <div class="tabs-item" @click="handleClick" :class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -22,7 +22,6 @@
         type: [String, Number],
         required: true,
       },
-
     },
     // 计算属性监听 active 改变 class
     computed: {
@@ -34,18 +33,21 @@
       }
     },
     created () {
-      this.eventBus.$on('update:selected', (name) => {
-        if (name === this.name) {
-          this.active = true
-        } else {
-          this.active = false
-        }
-      })
+      if (this.eventBus) {
+        this.eventBus.$on('update:selected', (name) => {
+          if (name === this.name) {
+            this.active = true
+          } else {
+            this.active = false
+          }
+        })
+      }
     },
     methods: {
       handleClick () {
         if (this.disabled) { return }
         this.eventBus.$emit('update:selected', this.name, this)
+        this.$emit('click',this)
       }
     }
   }
