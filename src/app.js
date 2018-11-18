@@ -17,6 +17,7 @@ import TabsNav from './tabs-nav'
 import TabsItem from './tabs-item'
 import TabsContent from './tabs-content'
 import TabsPane from './tabs-pane'
+import Popover from './popover'
 
 Vue.component('gear-button', Button)
 Vue.component('gear-icon', Icon)
@@ -30,12 +31,13 @@ Vue.component('gear-sider', Sider)
 Vue.component('gear-content', Content)
 Vue.component('gear-footer', Footer)
 Vue.component('gear-toast', Toast)
+Vue.use(plugin)
 Vue.component('gear-tabs', Tabs)
 Vue.component('gear-tabs-nav', TabsNav)
 Vue.component('gear-tabs-item', TabsItem)
 Vue.component('gear-tabs-content', TabsContent)
 Vue.component('gear-tabs-pane', TabsPane)
-Vue.use(plugin)
+Vue.component('gear-popover', Popover)
 
 
 new Vue({

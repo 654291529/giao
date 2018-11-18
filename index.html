@@ -57,6 +57,16 @@
 
 <div id="app">
 
+  <gear-popover>
+    <template slot="content">
+      <div>popover 内容</div>
+    </template>
+    <button>点击</button>
+  </gear-popover>
+
+  <br>
+  <br>
+
   <gear-tabs :selected.sync="selectedTab">
     <gear-tabs-nav>
       <template slot="actions">

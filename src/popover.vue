@@ -1,5 +1,8 @@
 <template>
-
+  <div class="popover">
+    <slot name="content"></slot>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -9,5 +12,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .popover {
+    display: inline-block;
+    vertical-align: top;
+  }
 </style>
