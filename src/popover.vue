@@ -17,6 +17,15 @@
       xxx() {
         console.log(123)
         this.visible = ! this.visible
+        if (this.visible === true) {
+          this.$nextTick(() => {
+            let eventHandler = () => {
+              this.visible = false
+              document.removeEventListener('click',eventHandler)
+            }
+            document.addEventListener('click', eventHandler)
+          })
+        }
       }
     }
   }
