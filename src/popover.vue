@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="handleClick">
+  <div class="popover" @click="handleClick" ref="popover">
     <div ref="contentWrapper" class="content-wrapper" v-if="visible">
       <slot name="content"></slot>
     </div>
@@ -13,7 +13,7 @@
   export default {
     name: 'GearPopover',
     data () {
-      return { visible: true }
+      return { visible: false }
     },
     methods: {
       // 定位内容
@@ -25,25 +25,31 @@
       },
       // 监听点击位置是否为内容区
       listenToDocument () {
-        let eventHandler = (event) => {
-          if (!this.$refs.contentWrapper.contains(event.target)) {
-            this.visible = false
-            document.removeEventListener('click', eventHandler)
-          }
-        }
-        document.addEventListener('click', eventHandler)
+        document.addEventListener('click', this.onClickDocument)
+      },
+      onClickDocument (event) {
+        if (this.$refs.popover &&
+            (this.$refs.popover === event.target || this.$refs.contentWrapper.contains(event.target))) { return }
+        this.close()
       },
       // 显示在页面
       onShow () {
+        this.visible = true
         this.$nextTick(() => {
           this.positionContent()
           this.listenToDocument()
         })
       },
+      // 关闭
+      close () {
+        this.visible = false
+        document.removeEventListener('click', this.onClickDocument)
+      },
       handleClick (event) {
         if (this.$refs.triggerWrapper.contains(event.target)) {
-          this.visible = !this.visible
           if (this.visible === true) {
+            this.close()
+          } else {
             this.onShow()
           }
         }
