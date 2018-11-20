@@ -31,27 +31,31 @@
         eventBus: this.eventBus
       }
     },
-    created () {
-      // this.$emit('update:selected','xxx')
+    methods: {
+      checkChildren () {
+        if (this.$children.length === 0) {
+          // throw new Error('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
+          console &&  console.warn &&
+          console.warn('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
+        }
+      },
+      selectTab () {
+        // 找到 item
+        this.$children.forEach((vm) => {
+          if (vm.$options.name === 'GearTabsNav') {
+            vm.$children.forEach((childVm) => {
+              if (childVm.$options.name === 'GearTabsItem' && childVm.name === this.selected) {
+                console.log(childVm.$el)
+                this.eventBus.$emit('update:selected', this.selected, childVm)
+              }
+            })
+          }
+        })
+      }
     },
     mounted () {
-      if (this.$children.length === 0) {
-        // throw new Error('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
-        console &&  console.warn &&
-        console.warn('tabs 的子组件应该是 tabs-nav 和 tabs-content，但您没有写入子组件。')
-      }
-
-      // 找到 item
-      this.$children.forEach((vm) => {
-        if (vm.$options.name === 'GearTabsNav') {
-          vm.$children.forEach((childVm) => {
-            if (childVm.$options.name === 'GearTabsItem' && childVm.name === this.selected) {
-              console.log(childVm.$el)
-              this.eventBus.$emit('update:selected', this.selected, childVm)
-            }
-          })
-        }
-      })
+      this.checkChildren()
+      this.selectTab()
     }
   }
 </script>
