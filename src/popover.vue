@@ -76,7 +76,9 @@
     position: absolute;
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+    /*box-shadow: 0 0 3px rgba(0, 0, 0, .5);*/
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .5));
+    background: white;
     transform: translateY(-100%);
     padding: .5em 1em;
     margin-top: -10px;
