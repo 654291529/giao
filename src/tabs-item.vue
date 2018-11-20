@@ -65,9 +65,11 @@
     align-items: center;
     &.active {
       color: $theme-color;
+      fill: $theme-color;
     }
     &.disabled {
       color: $disabled-color;
+      fill: $disabled-color;
       cursor: not-allowed;
     }
   }
