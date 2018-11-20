@@ -29,7 +29,9 @@
       },
       onClickDocument (event) {
         if (this.$refs.popover &&
-            (this.$refs.popover === event.target || this.$refs.contentWrapper.contains(event.target))) { return }
+            (this.$refs.popover === event.target || this.$refs.popover.contains(event.target))) { return }
+        if (this.$refs.contentWrapper &&
+            (this.$refs.contentWrapper === event.target || this.$refs.contentWrapper.contains(event.target))) { return }
         this.close()
       },
       // 显示在页面
@@ -78,6 +80,8 @@
     transform: translateY(-100%);
     padding: .5em 1em;
     margin-top: -10px;
+    max-width: 20em;
+    word-break: break-all;
 
     /* 气泡三角形 */
     &::before, &::after {
