@@ -27,23 +27,30 @@
     methods: {
       // 定位内容
       positionContent () {
-        const contentWrapper = this.$refs.contentWrapper
+        const { contentWrapper, triggerWrapper } = this.$refs
         document.body.appendChild(contentWrapper)
-        let { width, height, top, left } = this.$refs.triggerWrapper.getBoundingClientRect()
-        let { height: height2 } = contentWrapper.getBoundingClientRect()
-        if (this.position === 'top') {
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + window.scrollY + 'px'
-        } else if (this.position === 'bottom') {
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + height + window.scrollY + 'px'
-        } else if (this.position === 'left') {
-          contentWrapper.style.left = left + window.scrollX + 'px'
-          contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
-        } else if (this.position === 'right') {
-          contentWrapper.style.left = left + window.scrollX + width + 'px'
-          contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
+        const { width, height, top, left } = triggerWrapper.getBoundingClientRect()
+        const { height: height2 } = contentWrapper.getBoundingClientRect()
+        let positions = {
+          top: {
+            top: top + window.scrollY,
+            left: left + window.scrollX,
+          },
+          bottom: {
+            top: top + height + window.scrollY,
+            left: left + window.scrollX,
+          },
+          left: {
+            top: top + window.scrollY + (height - height2) / 2,
+            left: left + window.scrollX,
+          },
+          right: {
+            top: top + window.scrollY + (height - height2) / 2,
+            left: left + window.scrollX + width,
+          },
         }
+        contentWrapper.style.left = positions[this.position].left + 'px'
+        contentWrapper.style.top = positions[this.position].top + 'px'
 
       },
       // 监听点击位置是否为内容区
