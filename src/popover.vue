@@ -30,6 +30,7 @@
         const contentWrapper = this.$refs.contentWrapper
         document.body.appendChild(contentWrapper)
         let { width, height, top, left } = this.$refs.triggerWrapper.getBoundingClientRect()
+        let { height: height2 } = contentWrapper.getBoundingClientRect()
         if (this.position === 'top') {
           contentWrapper.style.left = left + window.scrollX + 'px'
           contentWrapper.style.top = top + window.scrollY + 'px'
@@ -38,11 +39,9 @@
           contentWrapper.style.top = top + height + window.scrollY + 'px'
         } else if (this.position === 'left') {
           contentWrapper.style.left = left + window.scrollX + 'px'
-          let { height: height2 } = contentWrapper.getBoundingClientRect()
           contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
         } else if (this.position === 'right') {
           contentWrapper.style.left = left + window.scrollX + width + 'px'
-          let { height: height2 } = contentWrapper.getBoundingClientRect()
           contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
         }
 
