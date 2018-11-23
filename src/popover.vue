@@ -17,22 +17,6 @@
         visible: false,
       }
     },
-    mounted () {
-      if (this.trigger === 'click') {
-        this.$refs.popover.addEventListener('click',this.handleClick)
-      } else {
-        this.$refs.popover.addEventListener('mouseenter',this.onShow)
-        this.$refs.popover.addEventListener('mouseleave',this.close)
-      }
-    },
-    destroyed () {
-      if (this.trigger === 'click') {
-        this.$refs.popover.removeEventListener('click',this.handleClick)
-      } else {
-        this.$refs.popover.removeEventListener('mouseenter',this.onShow)
-        this.$refs.popover.removeEventListener('mouseleave',this.close)
-      }
-    },
     props: {
       position: {
         type: String,
@@ -47,6 +31,22 @@
         validator (value) {
           return ['click','hover'].indexOf(value) >= 0
         }
+      },
+    },
+    mounted () {
+      if (this.trigger === 'click') {
+        this.$refs.popover.addEventListener('click',this.handleClick)
+      } else {
+        this.$refs.popover.addEventListener('mouseenter',this.onShow)
+        this.$refs.popover.addEventListener('mouseleave',this.close)
+      }
+    },
+    destroyed () {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click',this.handleClick)
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter',this.onShow)
+        this.$refs.popover.removeEventListener('mouseleave',this.close)
       }
     },
     methods: {
