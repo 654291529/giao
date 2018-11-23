@@ -93,8 +93,9 @@
   <br>
 
   <gear-popover>
-    <template slot="content">
+    <template slot="content" slot-scope="{close}">
       <div>thisistest.checkoutenglishover20,themessagewillapperbug</div>
+      <gear-button @click="close">关闭</gear-button>
     </template>
     <gear-button>点击</gear-button>
   </gear-popover>
