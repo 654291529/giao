@@ -18,6 +18,8 @@ import TabsItem from './tabs-item'
 import TabsContent from './tabs-content'
 import TabsPane from './tabs-pane'
 import Popover from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
 
 Vue.component('gear-button', Button)
 Vue.component('gear-icon', Icon)
@@ -38,6 +40,8 @@ Vue.component('gear-tabs-item', TabsItem)
 Vue.component('gear-tabs-content', TabsContent)
 Vue.component('gear-tabs-pane', TabsPane)
 Vue.component('gear-popover', Popover)
+Vue.component('gear-collapse', Collapse)
+Vue.component('gear-collapse-item', CollapseItem)
 
 
 new Vue({
