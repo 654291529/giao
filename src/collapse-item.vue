@@ -1,9 +1,9 @@
 <template>
   <div class="collapseItem">
-    <div class="title">
+    <div class="title" @click="open=!open">
       {{title}}
     </div>
-    <div class="content">
+    <div class="content" v-if="open">
       <slot></slot>
     </div>
   </div>
@@ -16,6 +16,11 @@
       title: {
         type: String,
         required: true
+      }
+    },
+    data () {
+      return {
+        open: false
       }
     }
   }
@@ -39,6 +44,13 @@
       > .title {
         border-top-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
+      }
+    }
+    &:last-child {
+      > .title:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+        margin-bottom: -1px;
       }
     }
     > .content {
