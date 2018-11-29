@@ -8,14 +8,23 @@
   import Vue from 'vue'
   export default {
     name: "GearCollapse",
+    props: {
+      single: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
         eventBus: new Vue()
       }
     },
     provide () {
-      return {
-        eventBus: this.eventBus
+      // 设置了 single 才会触发 eventBus
+      if (this.single) {
+        return {
+          eventBus: this.eventBus
+        }
       }
     }
   }
