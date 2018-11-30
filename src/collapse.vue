@@ -12,6 +12,9 @@
       single: {
         type: Boolean,
         default: false
+      },
+      selected: {
+        type: String,
       }
     },
     data () {
@@ -20,12 +23,12 @@
       }
     },
     provide () {
-      // 设置了 single 才会触发 eventBus
-      if (this.single) {
-        return {
-          eventBus: this.eventBus
-        }
+      return {
+        eventBus: this.eventBus
       }
+    },
+    mounted () {
+      this.eventBus.$emit('update:selected', this.selected)
     }
   }
 </script>
