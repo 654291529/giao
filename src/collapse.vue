@@ -33,6 +33,11 @@
       this.eventBus.$on('update:selected', (name) => {
         this.$emit('update:selected', name)
       })
+
+      this.$children.forEach((vm) => {
+        vm.single = this.single  // 子组件 single 是用户在组件中设置的 single
+        console.log(vm)
+      })
     }
   }
 </script>
