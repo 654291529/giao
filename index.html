@@ -59,11 +59,14 @@
 
 <div id="app">
 
-  <gear-collapse selected="1">
+  <gear-collapse :selected.sync="selectedCollapse">
     <gear-collapse-item title="标题1" name="1">内容1</gear-collapse-item>
     <gear-collapse-item title="标题2" name="2">内容2</gear-collapse-item>
     <gear-collapse-item title="标题3" name="3">内容3</gear-collapse-item>
   </gear-collapse>
+  <div style="padding: 20px 0;">选中标题：
+    {{selectedCollapse}}
+  </div>
 
   <br>
   <br>
@@ -162,7 +165,9 @@
       </gear-tabs-pane>
     </gear-tabs-content>
   </gear-tabs>
-
+  <div style="padding: 20px 0;">选中Tab：
+    {{selectedTab}}
+  </div>
   <br>
   <br>
 

@@ -29,6 +29,10 @@
     },
     mounted () {
       this.eventBus.$emit('update:selected', this.selected)
+      // 通知外部
+      this.eventBus.$on('update:selected', (name) => {
+        this.$emit('update:selected', name)
+      })
     }
   }
 </script>

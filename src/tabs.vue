@@ -47,6 +47,10 @@
               if (childVm.$options.name === 'GearTabsItem' && childVm.name === this.selected) {
                 console.log(childVm.$el)
                 this.eventBus.$emit('update:selected', this.selected, childVm)
+                // 通知外部
+                this.eventBus.$on('update:selected', (name) => {
+                  this.$emit('update:selected', name)
+                })
               }
             })
           }
