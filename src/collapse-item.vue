@@ -1,7 +1,7 @@
 <template>
   <div class="collapseItem">
     <div class="title" @click="toggle">
-      {{single}}{{title}}
+      {{title}}
     </div>
     <div class="content" v-if="open">
       <slot></slot>
@@ -34,7 +34,9 @@
       if (this.eventBus) {
         this.eventBus.$on('update:selected', (name) => {
           if (name !== this.name) {
-            this.close()
+            if (this.single) {
+              this.close()
+            }
           } else {
             this.show()
           }
