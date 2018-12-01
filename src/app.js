@@ -55,7 +55,8 @@ new Vue({
     error: '',
 
     selectedTab: 'sports',
-    selectedCollapse: '2'
+    selectedCollapse: ['1'],
+    selectedCollapse2: ['2']
   },
   created() {
     // setTimeout(()=> {

@@ -14,7 +14,7 @@
         default: false
       },
       selected: {
-        type: String,
+        type: Array,
       }
     },
     data () {
@@ -29,14 +29,25 @@
     },
     mounted () {
       this.eventBus.$emit('update:selected', this.selected)
-      // 通知外部
-      this.eventBus.$on('update:selected', (name) => {
-        this.$emit('update:selected', name)
+      this.eventBus.$on('update:addSelected', (name) => {
+        // 深拷贝一份 selected
+        let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+        if (this.single) {
+          selectedCopy = [name]
+        } else {
+          selectedCopy.push(name)
+        }
+        // 通知外部
+        this.$emit('update:selected', selectedCopy)
+        // 通知子组件
+        this.eventBus.$emit('update:selected', selectedCopy)
       })
-
-      this.$children.forEach((vm) => {
-        vm.single = this.single  // 子组件 single 是用户在组件中设置的 single
-        console.log(vm)
+      this.eventBus.$on('update:removeSelected', (name) => {
+        let selectedCopy = JSON.parse(JSON.stringify(this.selected))
+        let index = selectedCopy.indexOf(name)
+        selectedCopy.splice(index,1)
+        this.$emit('update:selected', selectedCopy)
+        this.eventBus.$emit('update:selected', selectedCopy)
       })
     }
   }

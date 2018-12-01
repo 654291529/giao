@@ -70,11 +70,14 @@
 
   <br>
   <div style="padding: 20px 0; font-size: 26px;">不设置 single：</div>
-  <gear-collapse :selected.sync="selectedCollapse">
+  <gear-collapse :selected.sync="selectedCollapse2">
     <gear-collapse-item title="标题1" name="1">内容1</gear-collapse-item>
     <gear-collapse-item title="标题2" name="2">内容2</gear-collapse-item>
     <gear-collapse-item title="标题3" name="3">内容3</gear-collapse-item>
   </gear-collapse>
+  <div style="padding: 20px 0;">选中标题：
+    {{selectedCollapse2}}
+  </div>
 
   <br>
   <br>
