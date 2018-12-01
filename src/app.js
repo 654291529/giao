@@ -55,7 +55,7 @@ new Vue({
     error: '',
 
     selectedTab: 'sports',
-    selectedCollapse: ['1'],
+    selectedCollapse: ['1'],   // 数组中的数字为默认开启的标题
     selectedCollapse2: ['2']
   },
   created() {
