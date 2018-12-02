@@ -28,9 +28,11 @@
       }
     },
     mounted () {
+      // 初始通知子组件
       this.eventBus.$emit('update:selected', this.selected)
+      // 添加
       this.eventBus.$on('update:addSelected', (name) => {
-        // 深拷贝一份 selected
+        // 深拷贝一份 selected, 遵循 vue 单向数据流
         let selectedCopy = JSON.parse(JSON.stringify(this.selected))
         if (this.single) {
           selectedCopy = [name]
@@ -39,9 +41,10 @@
         }
         // 通知外部
         this.$emit('update:selected', selectedCopy)
-        // 通知子组件
+        // 再次通知子组件
         this.eventBus.$emit('update:selected', selectedCopy)
       })
+      // 移除
       this.eventBus.$on('update:removeSelected', (name) => {
         let selectedCopy = JSON.parse(JSON.stringify(this.selected))
         let index = selectedCopy.indexOf(name)
