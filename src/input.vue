@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper" :class="{ 'error': error }">
-    <input :value="value" :disabled="disabled" :readonly="readonly" type="text"
+    <input :value="value" :disabled="disabled" :readonly="readonly" :type="type" :placeholder="placeholder"
      @change="$emit('change', $event.target.value)"
      @input="$emit('input', $event.target.value)"
      @focus="$emit('focus', $event.target.value)"
@@ -31,6 +31,12 @@
         default: false,
       },
       error: {
+        type: String,
+      },
+      placeholder: {
+        type: String,
+      },
+      type: {
         type: String,
       }
     },
