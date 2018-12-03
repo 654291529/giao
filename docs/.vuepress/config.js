@@ -19,6 +19,7 @@ module.exports = {
         children: [
           '/components/base/',
           '/components/form/',
+          '/components/layout/',
         ]
       },
     ]
