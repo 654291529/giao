@@ -2,7 +2,7 @@
   <div class="demo">
     <gear-layout style="color: white; margin-bottom:50px;">
       <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
-      <gear-content style="height: 100px; background:deepskyblue;">content</gear-content>
+      <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
       <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
     </gear-layout>
   </div>

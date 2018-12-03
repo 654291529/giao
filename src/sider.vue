@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="sider" v-if="visible">
       <slot></slot>
-      <button @click="visible = false">close</button>
+      <button v-if="closeButton" @click="visible = false">close</button>
     </div>
   </transition>
 </template>
@@ -10,9 +10,15 @@
 <script>
   export default {
     name: 'GearSider',
+    props: {
+      closeButton: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
-        visible: true
+        visible: true,
       }
     },
   }

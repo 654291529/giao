@@ -1,10 +1,10 @@
 <template>
   <div class="demo">
     <gear-layout style="color: white; overflow:hidden; margin-bottom:50px;">
-      <gear-sider style="background:#ddd; width:200px; color: black;">sider</gear-sider>
+      <gear-sider closeButton style="background:#ddd; width:200px; color: black;">sider</gear-sider>
       <gear-layout>
         <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
-        <gear-content style="height: 100px; background:deepskyblue;">content</gear-content>
+        <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
         <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
       </gear-layout>
     </gear-layout>

@@ -3,8 +3,8 @@
     <gear-layout style="color: white; margin-bottom:50px;">
       <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
       <gear-layout>
-        <gear-sider style="height: 100px; background:#ddd; width:200px; color: black;">sider</gear-sider>
-        <gear-content style="height: 100px; background:deepskyblue;">content</gear-content>
+        <gear-sider closeButton style="height: 200px; background:#ddd; width:200px; color: black;">sider</gear-sider>
+        <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
       </gear-layout>
       <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
     </gear-layout>

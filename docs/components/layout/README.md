@@ -303,19 +303,82 @@ layout 容器布局
 
 ### 通栏
 
+普通上中下通栏布局
+
 **基础用法**
 
 <layout-demos-one></layout-demos-one>
 
+```HTML
+<gear-layout style="color: white; margin-bottom:50px;">
+  <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
+  <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
+  <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
+</gear-layout>
+```
+
+<br>
+<br>
+<br>
 
 ### 内容侧边栏
+
+主体内容部分带侧边栏
 
 **基础用法**
 
 <layout-demos-two></layout-demos-two>
 
+```HTML
+<gear-layout style="color: white; margin-bottom:50px;">
+  <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
+  <gear-layout>
+    <gear-sider closeButton style="height: 200px; background:#ddd; width:200px; color: black;">sider</gear-sider>
+    <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
+  </gear-layout>
+  <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
+</gear-layout>
+```
+
+<br>
+<br>
+<br>
+
 ### 左侧边栏
+
+侧边栏独立于左边之外
 
 **基础用法**
 
 <layout-demos-three></layout-demos-three>
+
+```HTML
+<gear-layout style="color: white; overflow:hidden; margin-bottom:50px;">
+  <gear-sider closeButton style="background:#ddd; width:200px; color: black;">sider</gear-sider>
+  <gear-layout>
+    <gear-header style="height: 50px; background:lightskyblue;">header</gear-header>
+    <gear-content style="height: 200px; background:deepskyblue;">content</gear-content>
+    <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
+  </gear-layout>
+</gear-layout>
+```
+
+<br>
+
+**Attributes**
+
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| :------: |:------:| :------:| :------:| :------:|
+| closeButton    | sider 关闭动画按钮 | Boolean | - | false |
+
+`sider` 动画时长与动画移动距离可通过修改 `sider.vue` 组件中的 `sass` 进行调整
+
+```sass
+  // sider 动画
+  .slide-enter-active, .slide-leave-active {
+    transition: all .5s;
+  }
+  .slide-enter, .slide-leave-to {
+    margin-left: -200px;
+  }
+```
