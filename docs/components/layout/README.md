@@ -294,3 +294,28 @@ grid 网格布局
 | :pc    | 普通电脑 宽度小于1201px | Object | - | - |
 | :widePc    | 宽屏电脑 宽度大于1201px | Object | - | - |
 
+<br>
+<br>
+<br>
+
+layout 容器布局
+---
+
+### 通栏
+
+**基础用法**
+
+<layout-demos-one></layout-demos-one>
+
+
+### 内容侧边栏
+
+**基础用法**
+
+<layout-demos-two></layout-demos-two>
+
+### 左侧边栏
+
+**基础用法**
+
+<layout-demos-three></layout-demos-three>
