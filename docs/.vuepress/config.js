@@ -20,6 +20,7 @@ module.exports = {
           '/components/base/',
           '/components/form/',
           '/components/layout/',
+          '/components/datashow/',
         ]
       },
     ]

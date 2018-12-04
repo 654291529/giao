@@ -286,8 +286,8 @@ grid 网格布局
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | :------: |:------:| :------:| :------:| :------:|
-| span    | 网格占据的列数 | Number | 1-24 | - |
-| offset    | 栅格左侧的间隔格数 | Number | 1-23 | - |
+| span    | 网格占据的列数 | Number | 1 ~ 24 | - |
+| offset    | 栅格左侧的间隔格数 | Number | 1 ~ 23 | - |
 | :phone    | 手机尺寸 宽度小于577px | Object (例如:{span:12}) | - | - |
 | :pad    | 平板尺寸 宽度小于769px | Object | - | - |
 | :narrowPc   | 窄屏电脑小于993px | Object | - | - |
@@ -316,6 +316,8 @@ layout 容器布局
   <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
 </gear-layout>
 ```
+*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
+
 
 <br>
 <br>
@@ -339,6 +341,7 @@ layout 容器布局
   <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
 </gear-layout>
 ```
+*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
 
 <br>
 <br>
@@ -362,6 +365,7 @@ layout 容器布局
   </gear-layout>
 </gear-layout>
 ```
+*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
 
 <br>
 
