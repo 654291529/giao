@@ -1,6 +1,9 @@
 module.exports = {
   title: '📦 GearCase UI',
   description: '简易好用的 UI 框架',
+  head: [
+    ['link', { rel: 'icon', href: `/logo.ico` }]
+  ],
   themeConfig: {
     nav: [
       { text: '文档', link: '/' },

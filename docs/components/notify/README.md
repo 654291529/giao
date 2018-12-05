@@ -33,7 +33,7 @@ toast 弹出提示
 |  closeButton  | 设置 toast 是否含有关闭按钮 | Boolean | - | true |
 |  enableHtml  | 设置 toast 内容是否支持 v-html | Boolean | - | false |
 |  position  | 设置 toast 内容显示方位 | String | top / bottom / middle | top |
-⚠️ ️*️<font color=grey size=2>开启 `v-html` 可能会导致安全问题，使用该属性之前请慎重考虑。</font>*
+❗️️*️<font color=grey size=2>开启 `v-html` 可能会导致安全问题，使用该属性之前请慎重考虑。</font>*
 
 <br>
 <br>

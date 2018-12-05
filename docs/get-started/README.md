@@ -1,5 +1,10 @@
 # 快速上手
 
+## 写在前面
+文档中会出现的以下 `emoji` 图标标识。☕️ 图标表示提示或建议，⚠️ 图标表示一般注记，❗ 图标表示警告或警示。
+
+<br>
+
 ## 安装 
 具体安装方式请参考 [安装](/install/README.md) 章节。
 
@@ -83,6 +88,8 @@ Vue.component('gear-collapse-item', CollapseItem)
   $error-color: #F1453D;
 ```
 
+️☕️ *️<font color=grey size=2>关于本文档中出现的所有 `demo` ，均为本组件库默认样式。您可以自行添加样式进行覆盖。</font>*
+
 <br>
 
 ## 属性相关
@@ -106,3 +113,4 @@ Vue.component('gear-collapse-item', CollapseItem)
   ...
 </gear-collapse>
 ```
+
