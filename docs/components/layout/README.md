@@ -313,7 +313,7 @@ layout 容器布局
   <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
 </gear-layout>
 ```
-*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
+☕️ *<font color=grey size=2>该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中。</font>*
 
 <br>
 <br>
@@ -336,7 +336,7 @@ layout 容器布局
   <gear-footer style="height: 50px; background:lightskyblue;">footer</gear-footer>
 </gear-layout>
 ```
-*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
+☕️ *<font color=grey size=2>该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中。</font>*
 
 <br>
 <br>
@@ -359,7 +359,7 @@ layout 容器布局
   </gear-layout>
 </gear-layout>
 ```
-*该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中*
+☕️ *<font color=grey size=2>该示例中的所有内联 `style` 样式主要为了 `demo` 更好的展示，实际情况建议写入到页面 `<style>`之中。</font>*
 
 <br>
 

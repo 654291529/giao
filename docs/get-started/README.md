@@ -1,7 +1,7 @@
 # 快速上手
 
 ## 安装 
-具体安装方式请参考 [安装](/install/README.md) 章节
+具体安装方式请参考 [安装](/install/README.md) 章节。
 
 <br>
 
@@ -61,7 +61,7 @@ Vue.component('gear-collapse-item', CollapseItem)
 <br>
 
 ## 样式建议
-使用本 UI 框架前，请在 `CSS` 中开启 `border-box`
+使用本 UI 框架前，请在 `CSS` 中开启 `border-box`。
 
 ```css
 *, *::before, *::after {
@@ -89,7 +89,7 @@ Vue.component('gear-collapse-item', CollapseItem)
 
 若使用 `:prop` 属性传递数据格式为数字、数组、布尔值等非字符串格式时，必须在属性之前携带 `:` 。否则会当成 `String` 字符串类型进行传递而造成非预期的效果。具体情况请查阅[组件](/components/base/README.md)文档。
 
-**<font size=4>如下案例中 `selected` 为一个数组。</font>**
+**<font size=4>如下案例中 `selected` 为一个数组</font>**
 
 **<font color=green>正确的用法</font>**
 ```HTML

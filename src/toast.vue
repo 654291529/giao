@@ -118,7 +118,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 199;
+    z-index: 19999;
     &.position-top {
       top: 0;
       .toast {

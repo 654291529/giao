@@ -1,12 +1,8 @@
 <template>
   <div class="demo">
-    <gear-button @click="$toast('点击弹出提示')">上方弹出</gear-button>
-    <gear-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</gear-button>
-    <gear-button @click="$toast('点击弹出提示', {position:'bottom'})">下方弹出</gear-button>
-
-    <gear-button @click="showToast1">top</gear-button>
-    <gear-button @click="showToast2">middle</gear-button>
-    <gear-button @click="showToast3">bottom</gear-button>
+    <gear-button @click="showToast1">上方弹出</gear-button>
+    <gear-button @click="showToast2">中间弹出</gear-button>
+    <gear-button @click="showToast3">下方弹出</gear-button>
   </div>
 </template>
 
@@ -22,14 +18,14 @@
       'gear-toast': Toast,
     },
     methods: {
-      // toast 有 closeButton
+      // toast1 设置方位为 top, 非自动关闭, 不支持 v-html, 含 closeButton (并可以设置关闭文案和相关回调),
       showToast1(){
         // toast API
         this.$toast('this is message top', {
           position: 'top',
           autoClose: false,
           closeButton: {
-            text: '关闭',
+            text: 'Close',
             callback(){
               console.log('callback()回调，关闭被点击了')
             }
@@ -37,20 +33,19 @@
           enableHtml: false,
         })
       },
-      // toast 没有 closeButton
+      // toast2 设置方位为 middle, 自动关闭时间为 1s, 不支持 v-html, 无 closeButton,
       showToast2() {
         this.$toast('this is message middle', {
           position: 'middle',
-          autoClose: 1000,
+          autoClose: 1,
           enableHtml: false,
           closeButton: false
         })
       },
+      // toast3 设置方位为 bottom, 其他为默认设置
       showToast3() {
         this.$toast('this is message bottom', {
-          position: 'bottom',
-          autoClose: 3,
-          enableHtml: false,
+          position: 'bottom'
         })
       }
     }
