@@ -21,6 +21,7 @@ module.exports = {
           '/components/form/',
           '/components/layout/',
           '/components/datashow/',
+          '/components/notify/',
         ]
       },
     ]

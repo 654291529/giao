@@ -118,6 +118,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 199;
     &.position-top {
       top: 0;
       .toast {
@@ -146,7 +147,6 @@
     color: white;
     background: $toast-bg; border-radius: 4px; box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
     padding: 0 16px;
-
 
     .message {
       padding: 8px 0;

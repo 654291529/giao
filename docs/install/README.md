@@ -8,6 +8,8 @@
 git clone https://github.com/evenyao/GearCase.git
 ```
 
+<br>
+
 ## NPM / Yarn 安装
 
 使用 `NPM` 或者 `Yarn` 方式进行安装
