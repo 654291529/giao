@@ -1,6 +1,6 @@
 {
   "name": "gear-case",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "this is a UI frame.",
   "main": "dist/index.js",
   "scripts": {
