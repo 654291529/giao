@@ -133,6 +133,7 @@
     padding: .5em 1em;
     max-width: 20em;
     word-break: break-all;
+    z-index: 19;
     /* 气泡三角形 */
     &::before, &::after {
       content: '';

@@ -2,12 +2,12 @@
 
 ## 本地引用
 
-在 [GitHub 仓库](https://github.com/evenyao/GearCase)下载，或使用 git 命令克隆到本地，将 `gear-case` 文件夹放置到 `node_modules` 后注册使用。
+在 [GitHub 仓库](https://github.com/evenyao/GearCase)下载，或使用 git 命令克隆到本地，将 `GearCase` 重命名为 `gear-case` ，并将文件夹移动到项目目录 `node_modules` 内后注册使用。
 
 ```
 git clone https://github.com/evenyao/GearCase.git
 ```
-️⚠️ *️<font color=grey size=2>该方式可能会出现因缺少 `node sass` 等依赖而报错的问题，您可以在下载之后使用 `npm install` 来解决该问题。但我们仍旧推荐 `NPM / Yarn` 的安装方式</font>*
+️⚠️ *️<font color=grey size=2>该方式可能会出现因缺少 `node sass` 等依赖而报错的问题，您可以在下载之后使用 `npm install` 来解决该问题。所以我们推荐您使用 `NPM / Yarn` 的安装方式</font>*
 
 <br>
 
