@@ -58,6 +58,12 @@
 <body>
 
 <div id="app">
+
+  <gear-cascader :source="source"></gear-cascader>
+
+
+  <br>
+  <br>
   <div style="padding: 20px 0; font-size: 26px;">设置 single：</div>
   <gear-collapse :selected.sync="selectedCollapse" single>
     <gear-collapse-item title="标题1" name="1">内容1</gear-collapse-item>
