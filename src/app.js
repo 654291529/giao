@@ -45,6 +45,7 @@ Vue.component('gear-collapse', Collapse)
 Vue.component('gear-collapse-item', CollapseItem)
 Vue.component('gear-cascader', Cascader)
 
+
 new Vue({
   el: '#app',
   data: {
@@ -59,39 +60,83 @@ new Vue({
     selectedCollapse: ['1'],   // 数组中的数字为默认开启的标题
     selectedCollapse2: ['2'],
 
+    // source: [{
+    //   name: '浙江',
+    //   children: [
+    //       { name: '杭州',
+    //         children: [
+    //           { name: '上城区' },
+    //           { name: '下城区' },
+    //           { name: '江干区' },
+    //         ]
+    //       },
+    //       { name: '嘉兴',
+    //         children: [
+    //           { name: '南湖区' },
+    //           { name: '秀洲区' },
+    //           { name: '嘉善区' },
+    //         ]
+    //       },
+    //       { name: '湖州' },
+    //     ]
+    //   },{
+    //   name: '福建',
+    //   children: [
+    //       { name: '厦门' },
+    //       { name: '福州',
+    //         children: [
+    //           { name: '鼓楼区' },
+    //           { name: '台江区' },
+    //           { name: '仓山区' },
+    //         ]
+    //       },
+    //       { name: '三明' },
+    //     ]
+    //   }]
     source: [{
       name: '浙江',
       children: [
-          { name: '杭州',
-            children: [
-              { name: '上城区' },
-              { name: '下城区' },
-              { name: '江干区' },
-            ]
-          },
-          { name: '嘉兴',
-            children: [
-              { name: '南湖区' },
-              { name: '秀洲区' },
-              { name: '嘉善区' },
-            ]
-          },
-          { name: '湖州' },
-        ]
-      },{
+        {
+          name: '杭州',
+          children: [
+            { name: '上城' },
+            { name: '下城' },
+            { name: '江干' },
+          ]
+        },
+        {
+          name: '嘉兴',
+          children: [
+            { name: '南湖' },
+            { name: '秀洲' },
+            { name: '嘉善' },
+          ]
+        },
+      ]
+    }, {
       name: '福建',
       children: [
-          { name: '厦门' },
-          { name: '福州',
-            children: [
-              { name: '鼓楼区' },
-              { name: '台江区' },
-              { name: '仓山区' },
-            ]
-          },
-          { name: '三明' },
-        ]
-      }]
+        {
+          name: '福州',
+          children: [
+            { name: '鼓楼' },
+            { name: '台江' },
+            { name: '仓山' },
+          ]
+        },
+      ]
+    }, {
+      name: '安徽',
+      children: [
+        {
+          name: '合肥',
+          children: [
+            { name: '瑶海' },
+            { name: '庐阳' }
+          ]
+        }
+      ]
+    }]
   },
   created() {
     // setTimeout(()=> {
