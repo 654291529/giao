@@ -3,7 +3,7 @@
     <div class="trigger" @click="popoverVisible = !popoverVisible">
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <gear-cascader-items :items="source" class="popover" :height="popoverHeight" :selected="selected"></gear-cascader-items>
+      <gear-cascader-items :items="source" class="popover" :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
     </div>
   </div>
 </template>
@@ -30,6 +30,12 @@
     data () {
       return {
         popoverVisible: false,
+      }
+    },
+    methods: {
+      // 拿到子组件的新值 再向外层父组件传递
+      onUpdateSelected (newSelected) {
+        this.$emit('update:selected', newSelected)
       }
     }
   }

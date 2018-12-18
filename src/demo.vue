@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>11111</p>
-    <gear-cascader :source="source" popover-height="200px" :selected="selected"></gear-cascader>
+    <gear-cascader :source="source" popover-height="200px" :selected="selected" @update:selected="selected = $event"></gear-cascader>
     <p>22222</p>
   </div>
 </template>

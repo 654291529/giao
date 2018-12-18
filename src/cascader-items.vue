@@ -62,7 +62,12 @@
       handleClickLabel (item) {
         // this.selected[this.level] = item  Vue不允许在已经创建实例上动态添加新的根级响应式属性
         // 使用 $set 方法添加到嵌套对象上 Vue.set(object, key , value)
-        this.$set(this.selected, this.level , item)
+        // this.$set(this.selected, this.level , item)
+
+        // 由于违背了单向数据流, 因此此处修改之前子组件会修改父组件值的方案
+        let copy = JSON.parse(JSON.stringify(this.selected))
+        copy[this.level] = item
+        this.$emit('update:selected', copy)
       }
     }
   }
