@@ -1,7 +1,7 @@
 <template>
   <div class="cascaderItems" :style="{ height: height }">
-    <div>selected: {{ selected && selected[level] && selected[level].name }}</div>
-    <div>level: {{ level }}</div>
+    <!--<div>selected: {{ selected && selected[level] && selected[level].name }}</div>-->
+    <!--<div>level: {{ level }}</div>-->
     <div class="left">
       <div class="label" v-for="(item,index) in items" :key="index" @click="handleClickLabel(item)">
         {{item.name}}
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gear-cascader-items :items="rightItems" :height="height" :level="level+1"></gear-cascader-items>
+      <gear-cascader-items :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
     </div>
   </div>
 </template>
@@ -48,8 +48,9 @@
     },
     computed: {
       rightItems () {
-        if (this.leftSelected && this.leftSelected.children) {
-          return this.leftSelected.children
+        let currentSelected = this.selected[this.level]
+        if (currentSelected && currentSelected.children) {
+          return currentSelected.children
         } else {
           return null
         }
@@ -68,6 +69,10 @@
         let copy = JSON.parse(JSON.stringify(this.selected))
         copy[this.level] = item
         this.$emit('update:selected', copy)
+      },
+      // 拿到递归子组件的新值 向父组件传递
+      onUpdateSelected (newSelected) {
+        this.$emit('update:selected', newSelected)
       }
     }
   }
