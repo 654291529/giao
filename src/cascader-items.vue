@@ -68,6 +68,7 @@
         // 由于违背了单向数据流, 因此此处修改之前子组件会修改父组件值的方案
         let copy = JSON.parse(JSON.stringify(this.selected))
         copy[this.level] = item
+        copy.splice(this.level + 1)  // 每次选中 Label 更新 right 节点
         this.$emit('update:selected', copy)
       },
       // 拿到递归子组件的新值 向父组件传递
