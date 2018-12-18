@@ -1,13 +1,15 @@
 <template>
   <div class="cascaderItems" :style="{ height: height }">
+    <div>selected: {{ selected && selected[level] && selected[level].name }}</div>
+    <div>level: {{ level }}</div>
     <div class="left">
-      <div class="label" v-for="(item,index) in items" :key="index" @click="leftSelected = item">
+      <div class="label" v-for="(item,index) in items" :key="index" @click="handleClickLabel(item)">
         {{item.name}}
         <gear-icon class="icon" v-if="item.children" name="right"></gear-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gear-cascader-items :items="rightItems" :height="height"></gear-cascader-items>
+      <gear-cascader-items :items="rightItems" :height="height" :level="level+1"></gear-cascader-items>
     </div>
   </div>
 </template>
@@ -25,6 +27,18 @@
       },
       height: {
         type: String
+      },
+      // 定义选中属性
+      selected: {
+        type: Array,
+        default: () => {
+          return []
+        }
+      },
+      // 定义层级属性
+      level: {
+        type: Number,
+        default: 0
       }
     },
     data () {
@@ -33,12 +47,22 @@
       }
     },
     computed: {
-      rightItems() {
+      rightItems () {
         if (this.leftSelected && this.leftSelected.children) {
           return this.leftSelected.children
         } else {
           return null
         }
+      }
+    },
+    mounted (){
+
+    },
+    methods: {
+      handleClickLabel (item) {
+        // this.selected[this.level] = item  Vue不允许在已经创建实例上动态添加新的根级响应式属性
+        // 使用 $set 方法添加到嵌套对象上 Vue.set(object, key , value)
+        this.$set(this.selected, this.level , item)
       }
     }
   }
