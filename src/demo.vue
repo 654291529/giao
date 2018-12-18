@@ -4,7 +4,7 @@
     <p>{{ selected && selected[0] && selected[0].name || '空' }}</p>
     <p>{{ selected && selected[1] && selected[1].name || '空' }}</p>
     <p>{{ selected && selected[2] && selected[2].name || '空' }}</p>
-    <gear-cascader :source="source" popover-height="200px" :selected.sync="selected"></gear-cascader>
+    <gear-cascader :source="source" popover-height="200px" :selected.sync="selected" @update:selected="xxx"></gear-cascader>
     <p>22222</p>
   </div>
 </template>
@@ -16,7 +16,12 @@
   import db from './city-db'
 
   function ajax (parentId = 0) {
-    return db.filter((item) => item.parent_id == parentId)
+    return new Promise((success, fail) => {
+      setTimeout(() => {
+        let result =  db.filter((item) => item.parent_id == parentId)
+        success(result)
+      }, 2000)
+    })
   }
 
   console.log(ajax())
@@ -75,7 +80,27 @@
         //     }
         //   ]
         // }]
-        source: ajax()  // 从请求获取
+        // source: ajax()  // 从请求获取
+        source: []
+      }
+    },
+    created () {
+      ajax(0).then(result => {
+        this.source = result
+      })
+      ajax(1).then(result => {
+
+      })
+    },
+    methods: {
+      xxx() {
+        console.log(this.selected)
+        ajax(this.selected[0].id).then(result => {
+          console.log(result)
+          let lastLevelSelected = this.source.filter(item => item.id === this.selected[0].id)[0]
+          // lastLevelSelected.children = result
+          this.$set(lastLevelSelected, 'children', result)
+        })
       }
     }
   }
