@@ -9,10 +9,11 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gear-cascader-items :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
+      <gear-cascader-items ref="right" :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
     </div>
   </div>
 </template>
+
 
 <script>
   import Icon from './icon'
@@ -46,13 +47,16 @@
         leftSelected: null
       }
     },
+    updated () {
+      console.log('cascader items updated')
+    },
     computed: {
       rightItems () {
-        let currentSelected = this.selected[this.level]
-        if (currentSelected && currentSelected.children) {
-          return currentSelected.children
-        } else {
-          return null
+        if (this.selected && this.selected[this.level]) {
+          let selected = this.items.filter( item => item.name === this.selected[this.level].name )
+          if (selected && selected[0].children && selected[0].children.length > 0) {
+            return selected[0].children
+          }
         }
       }
     },
