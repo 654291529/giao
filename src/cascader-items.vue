@@ -4,8 +4,10 @@
     <!--<div>level: {{ level }}</div>-->
     <div class="left">
       <div class="label" v-for="(item,index) in items" :key="index" @click="handleClickLabel(item)">
-        {{item.name}}
-        <gear-icon class="icon" v-if="item.children" name="right"></gear-icon>
+        <span class="name">
+          {{item.name}}
+        </span>
+        <gear-icon class="icon" v-if="!item.isLeaf" name="right"></gear-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -92,7 +94,7 @@
     height: 100%;
     .left {
       height: 100%;
-      padding: .3em 0;
+      /*padding: .3em 0;*/
       overflow: auto;
     }
     .right {
@@ -100,12 +102,20 @@
       border-left: 1px solid $border-color-light;
     }
     .label {
-      padding: .3em 1em;
+      padding: .5em 1em;
       display: flex;
       align-items: center;
+      cursor: pointer;
+      &:hover {
+        background: #eee;
+      }
+      > .name {
+        margin-right: 1em;
+        user-select: none;
+      }
     }
     .icon {
-      margin-left: 0.5em;
+      margin-left: auto;
       transform: scale(0.8);
     }
   }

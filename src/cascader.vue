@@ -78,8 +78,10 @@
           toUpdate.children = result
           this.$emit('update:source', copy)
         }
-        this.loadData(lastItem, updateSource)   // 回调，调用用户传递给组件的函数
-
+        // 不是叶子节点才加载数据
+        if(!lastItem.isLeaf) {
+          this.loadData(lastItem, updateSource)
+        }
       }
     },
     // 计算属性添加选中结果

@@ -23,6 +23,14 @@
     return new Promise((success, fail) => {
       setTimeout(() => {
         let result = db.filter((item) => item.parent_id == parentId)
+        result.forEach(node => {
+          // 判断是否是最终节点
+           if( db.filter((item) => item.parent_id === node.id).length > 0 ){
+             node.isLeaf = false
+           } else {
+             node.isLeaf = true
+           }
+        })
         success(result)
       }, 300)
     })
@@ -90,6 +98,7 @@
     },
     created () {
       ajax(0).then(result => {
+        console.log(result)
         this.source = result
       })
     },
