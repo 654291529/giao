@@ -7,11 +7,14 @@
         <span class="name">
           {{item.name}}
         </span>
-        <gear-icon class="icon" v-if="!item.isLeaf" name="right"></gear-icon>
+        <gear-icon class="icon" v-if="rightArrowVisible(item)" name="right"></gear-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gear-cascader-items ref="right" :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
+      <gear-cascader-items ref="right" :items="rightItems" :height="height"
+                           :level="level+1" :selected="selected" :loadData="loadData"
+                           @update:selected="onUpdateSelected"
+      ></gear-cascader-items>
     </div>
   </div>
 </template>
@@ -42,6 +45,10 @@
       level: {
         type: Number,
         default: 0
+      },
+      // 定义是否动态获取
+      loadData: {
+        type: Function
       }
     },
     data () {
@@ -60,12 +67,16 @@
             return selected[0].children
           }
         }
-      }
+      },
     },
     mounted (){
 
     },
     methods: {
+      // icon 箭头是否可见
+      rightArrowVisible (item) {
+        return this.loadData ? (!item.isLeaf): item.children
+      },
       handleClickLabel (item) {
         // this.selected[this.level] = item  Vue不允许在已经创建实例上动态添加新的根级响应式属性
         // 使用 $set 方法添加到嵌套对象上 Vue.set(object, key , value)

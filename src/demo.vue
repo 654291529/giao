@@ -5,11 +5,14 @@
     <p>{{ selected && selected[1] && selected[1].name || '空' }}</p>
     <p>{{ selected && selected[2] && selected[2].name || '空' }}</p>
     <gear-cascader :source.sync="source" :selected.sync="selected"
-                   popover-height="200px" :load-data="loadData"
+                   popover-height="200px"
                    @update:source="onUpdateSource"
                    @update:selected="onUpdateSelected"
+                   :load-data="loadData"
     ></gear-cascader>
     <p>22222</p>
+
+
   </div>
 </template>
 
@@ -48,6 +51,9 @@
     data(){
       return {
         selected: [],
+        // 动态
+        source: []
+        // 静态
         // source: [{
         //   name: '浙江',
         //   children: [
@@ -92,27 +98,22 @@
         //     }
         //   ]
         // }]
-        // source: ajax()  // 从请求获取
-        source: []
       }
     },
     created () {
+      // 动态获取
       ajax(0).then(result => {
         console.log(result)
         this.source = result
       })
+
+      // 静态资源
+      // this.source = this.data.source
     },
     methods: {
       loadData({ id }, updateSource) {
         ajax(id).then(result => {
           updateSource(result)
-        })
-      },
-      xxx() {
-        console.log(this.selected)
-        ajax(this.selected[0].id).then(result => {
-          let lastLevelSelected = this.source.filter(item => item.id === this.selected[0].id)[0]
-          this.$set(lastLevelSelected, 'children', result)
         })
       },
       onUpdateSource () {

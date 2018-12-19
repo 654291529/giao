@@ -4,7 +4,10 @@
       {{ result || '&nbsp;' }}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <gear-cascader-items :items="source" class="popover" :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></gear-cascader-items>
+      <gear-cascader-items :items="source" class="popover" :loadData="loadData"
+                           :height="popoverHeight" :selected="selected"
+                           @update:selected="onUpdateSelected"
+      ></gear-cascader-items>
     </div>
   </div>
 </template>
@@ -80,7 +83,7 @@
         }
         // 不是叶子节点才加载数据
         if(!lastItem.isLeaf) {
-          this.loadData(lastItem, updateSource)
+          this.loadData && this.loadData(lastItem, updateSource)
         }
       }
     },
