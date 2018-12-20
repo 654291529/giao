@@ -12,12 +12,6 @@
     ></gear-cascader>
     <p style="margin-bottom: 200px;">22222</p>
 
-    <gear-popover>
-      <template slot="content">
-        <div>popover 内容</div>
-      </template>
-      <gear-button>点击</gear-button>
-    </gear-popover>
   </div>
 </template>
 
