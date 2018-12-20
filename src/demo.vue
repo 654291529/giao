@@ -10,9 +10,14 @@
                    @update:selected="onUpdateSelected"
                    :load-data="loadData"
     ></gear-cascader>
-    <p>22222</p>
+    <p style="margin-bottom: 200px;">22222</p>
 
-
+    <gear-popover>
+      <template slot="content">
+        <div>popover 内容</div>
+      </template>
+      <gear-button>点击</gear-button>
+    </gear-popover>
   </div>
 </template>
 
@@ -21,6 +26,7 @@
   import Icon from './icon'
   import Cascader from './cascader'
   import db from './city-db'
+  import Popover from './popover'
 
   function ajax (parentId = 0) {
     return new Promise((success, fail) => {
@@ -46,7 +52,8 @@
     components: {
       'gear-button': Button,
       'gear-icon': Icon,
-      'gear-cascader': Cascader
+      'gear-cascader': Cascader,
+      'gear-popover': Popover
     },
     data(){
       return {

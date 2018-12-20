@@ -1,6 +1,6 @@
 <template>
-  <div class="cascader">
-    <div class="trigger" @click="popoverVisible = !popoverVisible">
+  <div class="cascader" ref="cascader">
+    <div class="trigger" @click="toggle">
       {{ result || '&nbsp;' }}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
@@ -40,6 +40,32 @@
       }
     },
     methods: {
+      onClickDocument (e) {
+        let { cascader } = this.$refs
+        let { target } = e
+        if (cascader === target || cascader.contains(target)) {
+          return
+        }
+        this.close()
+      },
+      open() {
+        this.popoverVisible = true
+        this.$nextTick(() => {
+          document.addEventListener('click', this.onClickDocument)
+        })
+      },
+      close() {
+        this.popoverVisible = false
+        console.log('close')
+        document.removeEventListener('click', this.onClickDocument)
+      },
+      toggle() {
+        if(this.popoverVisible === true) {
+          this.close()
+        } else {
+          this.open()
+        }
+      },
       // 拿到子组件的新值 再向外层父组件传递
       onUpdateSelected (newSelected) {
         this.$emit('update:selected', newSelected)
@@ -99,8 +125,10 @@
 <style lang="scss" scoped>
   @import "var";
   .cascader {
+    display: inline-block;
     font-size: $font-size;
     position: relative;
+    border: 1px solid red;
     .trigger {
       height: $input-height;
       display: inline-flex;
