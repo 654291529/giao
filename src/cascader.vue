@@ -5,6 +5,7 @@
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
       <gear-cascader-items :items="source" class="popover" :loadData="loadData"
+                           :loading-item="loadingItem"
                            :height="popoverHeight" :selected="selected"
                            @update:selected="onUpdateSelected"
       ></gear-cascader-items>
@@ -41,6 +42,7 @@
     data () {
       return {
         popoverVisible: false,
+        loadingItem: {}
       }
     },
     methods: {
@@ -94,14 +96,16 @@
           }
         }
         let updateSource = (result) => {
+          this.loadingItem = {}
           let copy = JSON.parse(JSON.stringify(this.source))
           let toUpdate = complex(copy, lastItem.id)
           toUpdate.children = result
           this.$emit('update:source', copy)
         }
         // 不是叶子节点才加载数据
-        if(!lastItem.isLeaf) {
-          this.loadData && this.loadData(lastItem, updateSource)
+        if(!lastItem.isLeaf && this.loadData) {
+          this.loadData(lastItem, updateSource)
+          this.loadingItem = lastItem
         }
       }
     },
@@ -120,7 +124,6 @@
     display: inline-block;
     font-size: $font-size;
     position: relative;
-    border: 1px solid red;
     .trigger {
       height: $input-height;
       display: inline-flex;
@@ -131,7 +134,7 @@
       border-radius: $border-radius;
     }
     .popover-wrapper {
-      position: absolute; top: 100%; left: 0; background: white; height: 200px; display: flex;
+      position: absolute; top: 100%; left: 0; background: white; height: 200px; display: flex; z-index: 199;
       margin-top: 8px;
       @extend .box-shadow;
       .label {

@@ -1,13 +1,24 @@
-// 外部点击指令
+let onClickDocument =  (e) => {
+  let {target} = e
+  callbacks.forEach((item) => {
+    if(target === item.el || item.el.contains(target)) {
+      return
+    } else {
+      item.callback()
+    }
+  })
+}
+
+document.addEventListener('click', onClickDocument)
+let callbacks = []
 export default {
   bind: function(el, binding, vnode) {
-    document.addEventListener('click', (e) => {
-      let { target } = e
-      if (target === el || el.contains(target)) {
-        console.log('inside')
-        return
-      }
-      binding.value()
-    })
+    callbacks.push({el, callback: binding.value})
   }
 }
+
+let removeListener = () => {
+  document.removeEventListener('click', onClickDocument)
+}
+
+export {removeListener}

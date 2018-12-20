@@ -10,7 +10,8 @@
                    @update:selected="onUpdateSelected"
                    :load-data="loadData"
     ></gear-cascader>
-    <p style="margin-bottom: 200px;">22222</p>
+    <p style="margin-bottom: 100px;">22222</p>
+
 
   </div>
 </template>
@@ -53,7 +54,7 @@
       return {
         selected: [],
         // 动态
-        source: []
+        source: [],
         // 静态
         // source: [{
         //   name: '浙江',

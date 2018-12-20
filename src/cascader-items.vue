@@ -7,11 +7,19 @@
         <span class="name">
           {{item.name}}
         </span>
-        <gear-icon class="icon" v-if="rightArrowVisible(item)" name="right"></gear-icon>
+        <div class="icons">
+          <template v-if="item.name === loadingItem.name">
+            <gear-icon class="loading icon" name="loading"></gear-icon>
+          </template>
+          <template v-else>
+            <gear-icon class="icon" v-if="rightArrowVisible(item)" name="right"></gear-icon>
+          </template>
+        </div>
       </div>
     </div>
     <div class="right" v-if="rightItems">
       <gear-cascader-items ref="right" :items="rightItems" :height="height"
+                           :loading-item="loadingItem"
                            :level="level+1" :selected="selected" :loadData="loadData"
                            @update:selected="onUpdateSelected"
       ></gear-cascader-items>
@@ -33,6 +41,11 @@
       },
       height: {
         type: String
+      },
+      // 是否加载
+      loadingItem: {
+        type: Object,
+        default: () => ({})
       },
       // 定义选中属性
       selected: {
@@ -68,9 +81,6 @@
           }
         }
       },
-    },
-    mounted (){
-
     },
     methods: {
       // icon 箭头是否可见
@@ -126,9 +136,14 @@
         user-select: none;
       }
     }
-    .icon {
+    .icons {
       margin-left: auto;
       transform: scale(0.8);
+      .loading {
+        animation: spin 2s infinite linear;
+      }
     }
   }
+
+
 </style>
