@@ -63,7 +63,7 @@
       // 拿到子组件的新值 再向外层父组件传递
       onUpdateSelected (newSelected) {
         this.$emit('update:selected', newSelected)
-        let lastItem = newSelected[newSelected.length - 1]
+        var lastItem = newSelected[newSelected.length - 1]
         let simplest = (children,id) => {
           return children.filter(item => item.id === id)[0]
         }
@@ -106,8 +106,11 @@
         if(!lastItem.isLeaf && this.loadData) {
           this.loadData(lastItem, updateSource)
           this.loadingItem = lastItem
+        } else {
+          // 最后节点 关闭 popover
+          this.popoverVisible = false
         }
-      }
+      },
     },
     // 计算属性添加选中结果
     computed: {

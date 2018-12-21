@@ -88,6 +88,9 @@
         return this.loadData ? (!item.isLeaf): item.children
       },
       handleClickLabel (item) {
+        if(item.isLeaf) {
+          console.log('最后节点')
+        }
         // this.selected[this.level] = item  Vue不允许在已经创建实例上动态添加新的根级响应式属性
         // 使用 $set 方法添加到嵌套对象上 Vue.set(object, key , value)
         // this.$set(this.selected, this.level , item)

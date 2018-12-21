@@ -6,8 +6,6 @@
     <p>{{ selected && selected[2] && selected[2].name || '空' }}</p>
     <gear-cascader :source.sync="source" :selected.sync="selected"
                    popover-height="200px"
-                   @update:source="onUpdateSource"
-                   @update:selected="onUpdateSelected"
                    :load-data="loadData"
     ></gear-cascader>
     <p style="margin-bottom: 100px;">22222</p>
@@ -118,10 +116,6 @@
           updateSource(result)
         })
       },
-      onUpdateSource () {
-      },
-      onUpdateSelected () {
-      }
     }
   }
 </script>
