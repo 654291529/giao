@@ -27,7 +27,8 @@
         type: Array
       },
       popoverHeight: {
-        type: String
+        type: String,
+        default: '200px'
       },
       selected: {
         type: Array,
@@ -142,7 +143,7 @@
       border-radius: $border-radius;
     }
     .popover-wrapper {
-      position: absolute; top: 100%; left: 0; background: white; height: 200px; display: flex; z-index: 199;
+      position: absolute; top: 100%; left: 0; background: white; display: flex; z-index: 199;
       margin-top: 8px;
       @extend .box-shadow;
       .label {

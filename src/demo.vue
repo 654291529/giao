@@ -5,7 +5,7 @@
     <p>{{ selected && selected[1] && selected[1].name || '空' }}</p>
     <p>{{ selected && selected[2] && selected[2].name || '空' }}</p>
     <gear-cascader :source.sync="source" :selected.sync="selected"
-                   popover-height="200px"
+                   popover-height="400px"
                    :load-data="loadData"
     ></gear-cascader>
     <p style="margin-bottom: 100px;">22222</p>
