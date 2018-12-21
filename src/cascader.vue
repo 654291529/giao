@@ -102,12 +102,17 @@
           toUpdate.children = result
           this.$emit('update:source', copy)
         }
-        // 不是叶子节点才加载数据
-        if(!lastItem.isLeaf && this.loadData) {
+        // 动态加载时 不是叶子节点才加载数据
+        if (!lastItem.isLeaf && this.loadData) {
           this.loadData(lastItem, updateSource)
           this.loadingItem = lastItem
-        } else {
-          // 最后节点 关闭 popover
+        } else if (lastItem.isLeaf && this.loadData) {
+          // 并且在最后节点关闭 popover
+          this.popoverVisible = false
+        }
+
+        // 静态加载时 在最后节点关闭 popover
+        if (!lastItem.children && !this.loadData) {
           this.popoverVisible = false
         }
       },

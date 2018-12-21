@@ -108,7 +108,7 @@
       })
 
       // 静态资源
-      // this.source = this.data.source
+      // 直接使用 data 里的 source
     },
     methods: {
       loadData({ id }, updateSource) {
