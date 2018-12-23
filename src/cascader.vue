@@ -121,7 +121,7 @@
     // 计算属性添加选中结果
     computed: {
       result () {
-        return this.selected.map((item) => item.name).join('/')
+        return this.selected.map((item) => item.name).join(' / ')
       }
     }
   }
