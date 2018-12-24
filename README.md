@@ -32,6 +32,7 @@
 - Tabs 标签页
 - Popover 气泡提示
 - Collapse 折叠面板
+- Cascader 级联选择器
 
 > 其他组件轮子持续更新中... 
   
