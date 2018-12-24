@@ -3,3 +3,4 @@ node_modules/
 dist/
 demand/
 docs/
+package-lock.json
