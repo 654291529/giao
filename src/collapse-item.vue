@@ -53,6 +53,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "var";
   $grey: grey;
   $border-radius: 4px;
   .collapseItem {
@@ -65,6 +66,7 @@
       display: flex;
       align-items: center;
       padding: 0 8px;
+      background: $collapse-title-bg;
     }
     &:first-child {
       > .title {
