@@ -1,8 +1,10 @@
 # GearCase UI
 [![Build Status](https://www.travis-ci.org/evenyao/GearCase.svg?branch=master)](https://www.travis-ci.org/evenyao/GearCase)
 ![Cocoapods](https://img.shields.io/cocoapods/l/AFNetworking.svg)
-![GearCase](https://img.shields.io/badge/gearcase-0.1.2-orange.svg)
+![GearCase](https://img.shields.io/badge/gearcase-0.1.5-orange.svg)
 
+## 文档
+https://gearcase-ui.cn
 
 ## 简介
 ![](https://img-1257191344.cos.ap-chengdu.myqcloud.com/gear.png)
@@ -36,8 +38,6 @@
 
 > 其他组件轮子持续更新中... 
   
-## 文档
-https://gearcase-ui.cn
 
 ## 交流
 
