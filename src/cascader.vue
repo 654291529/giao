@@ -2,23 +2,31 @@
   <div class="cascader" ref="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">
       {{ result || '&nbsp;' }}
+      <gear-icon class="right-icon" :class="{ active: isActive }" name="right"></gear-icon>
     </div>
-    <div class="popover-wrapper" v-if="popoverVisible">
+    <gear-springs class="popover-wrapper" :visible="popoverVisible">
       <gear-cascader-items :items="source" class="popover" :loadData="loadData"
                            :loading-item="loadingItem"
                            :height="popoverHeight" :selected="selected"
                            @update:selected="onUpdateSelected"
       ></gear-cascader-items>
-    </div>
+    </gear-springs>
   </div>
 </template>
 
 <script>
+  import Icon from './icon'
   import CascaderItems from './cascader-items'
   import ClickOutside from './click-outside'
+  import Springs from "./springs"
+
   export default {
     name: "GearCascader",
-    components: { 'gear-cascader-items': CascaderItems },
+    components: {
+      'gear-springs': Springs,
+      'gear-icon': Icon,
+      'gear-cascader-items': CascaderItems
+    },
     directives: {
       ClickOutside
     },
@@ -42,6 +50,7 @@
     },
     data () {
       return {
+        isActive: false,
         popoverVisible: false,
         loadingItem: {}
       }
@@ -49,10 +58,12 @@
     methods: {
       open() {
         this.popoverVisible = true
+        this.isActive = true
       },
       close() {
         console.log('close')
         this.popoverVisible = false
+        this.isActive = false
       },
       toggle() {
         if(this.popoverVisible === true) {
@@ -109,12 +120,12 @@
           this.loadingItem = lastItem
         } else if (lastItem.isLeaf && this.loadData) {
           // 并且在最后节点关闭 popover
-          this.popoverVisible = false
+          this.close()
         }
 
         // 静态加载时 在最后节点关闭 popover
         if (!lastItem.children && !this.loadData) {
-          this.popoverVisible = false
+          this.close()
         }
       },
     },
@@ -141,6 +152,16 @@
       min-width: 10em;
       border: 1px solid $border-color;
       border-radius: $border-radius;
+
+      .right-icon {
+        position: absolute;
+        right: 0.5em;
+        transition: all .3s;
+      }
+
+      .active {
+        transform: rotateZ(90deg);
+      }
     }
     .popover-wrapper {
       position: absolute; top: 100%; left: 0; background: white; display: flex; z-index: 199;
