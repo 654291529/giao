@@ -1,19 +1,25 @@
 <template>
-  <transition name="slide">
-    <div class="sider" v-if="visible">
-      <slot></slot>
-      <button v-if="closeButton" @click="visible = false">close</button>
-    </div>
-  </transition>
+  <gear-springs class="sider" :visible="visible" horizontal :duration="duration">
+    <slot></slot>
+    <button v-if="closeButton" @click="visible = false">close</button>
+  </gear-springs>
 </template>
 
 <script>
+  import Springs from './springs'
   export default {
     name: 'GearSider',
+    components: {
+      'gear-springs': Springs
+    },
     props: {
       closeButton: {
         type: Boolean,
         default: false
+      },
+      duration: {
+        type: [Number, String],
+        default: 300
       }
     },
     data () {
@@ -32,12 +38,5 @@
       top: 0;
       right: 0;
     }
-  }
-  // sider 动画
-  .slide-enter-active, .slide-leave-active {
-    transition: all .5s;
-  }
-  .slide-enter, .slide-leave-to {
-    margin-left: -200px;
   }
 </style>
