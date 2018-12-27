@@ -2,16 +2,27 @@
   <div class="collapseItem">
     <div class="title" @click="toggle">
       {{title}}
+      <transition name="fade">
+        <gear-icon class="right-icon" :class="{ active: isActive }" name="right"></gear-icon>
+      </transition>
     </div>
-    <div class="content" v-if="open">
-      <slot></slot>
-    </div>
+    <gear-springs :visible="open" duration="500">
+      <div class="item-content">
+        <slot></slot>
+      </div>
+    </gear-springs>
   </div>
 </template>
 
 <script>
+  import Icon from './icon'
+  import Springs from './springs'
   export default {
     name: "GearCollapseItem",
+    components: {
+      'gear-icon': Icon,
+      'gear-springs': Springs
+    },
     props: {
       title: {
         // 必传且是字符串
@@ -25,7 +36,9 @@
     },
     data () {
       return {
-        open: false
+        open: false,
+        isActive: false,
+        visible: false
       }
     },
     inject: ['eventBus'],
@@ -34,8 +47,10 @@
         this.eventBus.$on('update:selected', (names) => {
           if (names.indexOf(this.name) >=0) {
             this.open = true
+            this.isActive = true
           } else {
             this.open = false
+            this.isActive = false
           }
         })
       }
@@ -58,6 +73,7 @@
   $border-radius: 4px;
   .collapseItem {
     > .title {
+      position: relative;
       border: 1px solid $grey;
       margin-top: -1px;
       margin-left: -1px;
@@ -67,6 +83,17 @@
       align-items: center;
       padding: 0 8px;
       background: $collapse-title-bg;
+
+      .right-icon {
+        display: inline-block;
+        position: absolute;
+        right: 0.5em;
+        transition: all .5s;
+      }
+
+      .active {
+        transform: rotateZ(90deg);
+      }
     }
     &:first-child {
       > .title {
@@ -81,8 +108,9 @@
         margin-bottom: -1px;
       }
     }
-    > .content {
-      padding: 8px;
+
+    .item-content {
+      padding: 30px 8px;
     }
   }
 </style>
