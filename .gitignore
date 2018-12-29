@@ -1,6 +1,5 @@
 node_modules/
 .cache/
-dist/
 demand/
 docs/
 package-lock.json
