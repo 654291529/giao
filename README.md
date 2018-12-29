@@ -1,7 +1,7 @@
 # GearCase UI
 [![Build Status](https://www.travis-ci.org/evenyao/GearCase.svg?branch=master)](https://www.travis-ci.org/evenyao/GearCase)
 ![Cocoapods](https://img.shields.io/cocoapods/l/AFNetworking.svg)
-![GearCase](https://img.shields.io/badge/gearcase-0.2.1-orange.svg)
+![GearCase](https://img.shields.io/badge/gearcase-0.2.2-orange.svg)
 
 ## 文档
 https://gearcase-ui.cn
@@ -36,6 +36,7 @@ https://gearcase-ui.cn
 - Collapse 折叠面板
 - Cascader 级联选择器
 - Springs 伸展动画
+- Slides 轮播幻灯片
 
 > 其他组件轮子持续更新中... 
   
