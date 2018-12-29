@@ -1,34 +1,35 @@
 <template>
-  <div ref="sliderWrapper" class="sliderWrapper" :style="{ width:imgWidth+'px',height: imgWidth/1.5 + 'px'}" @mouseover="stop"
+  <div ref="sliderWrapper" class="sliderWrapper" :style="imgContentStyle"
+       @mouseover="stop"
        @mouseleave="play">
     <ul class="container" :style="containerStyle">
-      <li :style="{width:imgWidth+'px'}">
-        <a :href="slides[slides.length - 1].clickUrl" >
-          <img class="img-content" :style="{width:imgWidth+'px'}" :src="slides[slides.length - 1].img" alt="">
+      <li :style="imgContentStyle">
+        <a :href="slides[slides.length - 1].clickUrl">
+          <img class="img-content" :style="imgContentStyle" :src="slides[slides.length - 1].img" alt="">
         </a>
       </li>
-      <li v-for="(item, index) in slides" :key="item.img" :style="{width:imgWidth+'px'}">
-        <a :href="item.clickUrl" >
-          <img class="img-content" :style="{width:imgWidth+'px'}" :src="item.img" alt="">
+      <li v-for="(item, index) in slides" :key="item.img" :style="imgContentStyle">
+        <a :href="item.clickUrl">
+          <img class="img-content" :style="imgContentStyle" :src="item.img" alt="">
         </a>
       </li>
-      <li :style="{width:imgWidth+'px'}">
-        <a :href="slides[0].clickUrl" >
-          <img class="img-content" :style="{width:imgWidth+'px'}" :src="slides[0].img" alt="">
+      <li :style="imgContentStyle">
+        <a :href="slides[0].clickUrl">
+          <img class="img-content" :style="imgContentStyle" :src="slides[0].img" alt="">
         </a>
       </li>
     </ul>
     <ul class="direction">
       <li class="left" @click="move(imgWidth, 1, speed)"
-          :style="{width:imgWidth/12 +'px',height: imgWidth/12 + 'px'}">
+          :style="iconWrapperStyle">
         <gear-icon name="left"
-                   :style="{ width:imgWidth/20 +'px',height: imgWidth/20 + 'px'}"
+                   :style="iconStyle"
         ></gear-icon>
       </li>
       <li class="right" @click="move(imgWidth, -1, speed)"
-          :style="{width:imgWidth/12 +'px',height: imgWidth/12 + 'px'}">
+          :style="iconWrapperStyle">
         <gear-icon name="right"
-                   :style="{ width:imgWidth/20 +'px',height: imgWidth/20 + 'px'}"
+                   :style="iconStyle"
         ></gear-icon>
       </li>
     </ul>
@@ -70,11 +71,16 @@
       setWidth: {
         type: Number,
         default: 600
+      },
+      // 设置高度
+      setHeight: {
+        type: Number
       }
     },
     data() {
       return {
         imgWidth: this.setWidth,
+        imgHeight: this.setHeight,
         currentIndex: 1,
         distance: -this.setWidth,
         transitionEnd: true,
@@ -82,6 +88,34 @@
       }
     },
     computed: {
+      // 格式化轮播样式
+      imgContentStyle() {
+        if(this.imgHeight) {
+          // 传 setHight 时, 设置高度
+          return {
+            width: this.imgWidth + 'px',
+            height: this.imgHeight + 'px'
+          }
+        } else {
+          // 不传 setHight 时, 宽高比 1.5 比例自适应
+          return {
+            width: this.imgWidth + 'px',
+            height: this.imgWidth / 1.5 + 'px'
+          }
+        }
+      },
+      iconWrapperStyle() {
+        return {
+          width: this.imgWidth / 12 + 'px',
+          height: this.imgWidth / 12 + 'px'
+        }
+      },
+      iconStyle() {
+        return {
+          width: this.imgWidth / 20 + 'px',
+          height: this.imgWidth / 20 + 'px'
+        }
+      },
       containerStyle() {
         return {
           transform: `translateX(${this.distance}px)`
@@ -93,11 +127,12 @@
     },
     mounted() {
       console.log(this.slides)
+      console.log(this.imgHeight)
       let sliderWrapper = this.$refs.sliderWrapper
       console.log(sliderWrapper)
       this.play()
-      sliderWrapper.addEventListener('mouseenter',this.stop())
-      sliderWrapper.addEventListener('mouseleave',this.play())
+      sliderWrapper.addEventListener('mouseenter', this.stop())
+      sliderWrapper.addEventListener('mouseleave', this.play())
     },
     methods: {
       move(offset, direction, speed) {
@@ -128,6 +163,7 @@
           }
         }, 20)
       },
+      // 按钮跳转
       switchItem(index) {
         const direction = index - this.currentIndex >= 0 ? -1 : 1;
         const offset = Math.abs(index - this.currentIndex) * this.imgWidth;
