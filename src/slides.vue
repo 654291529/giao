@@ -19,7 +19,7 @@
         </a>
       </li>
     </ul>
-    <ul class="direction">
+    <ul class="direction" v-if="showControl">
       <li class="left" @click="move(imgWidth, 1, speed)"
           :style="iconWrapperStyle">
         <gear-icon name="left"
@@ -33,7 +33,7 @@
         ></gear-icon>
       </li>
     </ul>
-    <ul class="dots">
+    <ul class="dots" v-if="showControl && showSelected">
       <li v-for="(dot, i) in slides" :key="i"
           :class="{dotted: i === (currentIndex-1)}"
           :style="{width: (i === (currentIndex-1)?imgWidth/10 +'px':imgWidth/40 +'px'), height: imgWidth/40 + 'px', borderRadius: imgWidth/80 + 'px' }"
@@ -54,14 +54,13 @@
     },
     props: {
       // 轮播速度
-      initialSpeed: {
+      rollSpeed: {
         type: Number,
         default: 20
       },
       // 自动播放间隔
-      initialInterval: {
+      rollAuto: {
         type: Number,
-        default: 3
       },
       // 轮播图数据
       slides: {
@@ -75,6 +74,11 @@
       // 设置高度
       setHeight: {
         type: Number
+      },
+      // 控制按钮显示
+      selectedButton: {
+        type: Boolean,
+        default: true
       }
     },
     data() {
@@ -84,7 +88,9 @@
         currentIndex: 1,
         distance: -this.setWidth,
         transitionEnd: true,
-        speed: this.initialSpeed
+        speed: this.rollSpeed,
+        showControl: true,
+        showSelected: true
       }
     },
     computed: {
@@ -121,11 +127,22 @@
           transform: `translateX(${this.distance}px)`
         }
       },
+      // 自动播放时间计算
       interval() {
-        return this.initialInterval * 1000
+        if(this.rollAuto) {
+          return this.rollAuto * 1000
+        }
       }
     },
     mounted() {
+      // 底部选择按钮 是否显示
+      if(!this.selectedButton) {
+        this.showSelected = false
+      }
+      // 图片只有一张 不显示 control 按钮
+      if(this.slides.length <= 1) {
+        this.showControl = false
+      }
       console.log(this.slides)
       console.log(this.imgHeight)
       let sliderWrapper = this.$refs.sliderWrapper
@@ -137,6 +154,10 @@
     methods: {
       move(offset, direction, speed) {
         console.log(speed)
+        // 少于等于一张 不做轮播操作
+        if(this.slides.length <= 1) {
+          return
+        }
         if (!this.transitionEnd) return
         this.transitionEnd = false
         direction === -1 ? this.currentIndex += offset / this.imgWidth : this.currentIndex -= offset / this.imgWidth
@@ -172,20 +193,25 @@
       },
       // 轮播
       play() {
-        console.log('开始')
-        if (this.timer) {
-          clearInterval(this.timer)
-          this.timer = null
+        // 设置了 rollAuto 参数才会自动播放
+        if(this.rollAuto) {
+          console.log('开始')
+          if (this.timer) {
+            clearInterval(this.timer)
+            this.timer = null
+          }
+          this.timer = setInterval(() => {
+            this.move(this.imgWidth, -1, this.speed)
+          }, this.interval)
         }
-        this.timer = setInterval(() => {
-          this.move(this.imgWidth, -1, this.speed)
-        }, this.interval)
       },
       // 暂停
       stop() {
-        console.log('暂停')
-        clearInterval(this.timer)
-        this.timer = null
+        if(this.rollAuto) {
+          console.log('暂停')
+          clearInterval(this.timer)
+          this.timer = null
+        }
       }
     }
   }
