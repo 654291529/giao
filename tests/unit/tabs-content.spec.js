@@ -2,7 +2,7 @@ import chai, {expect} from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import {shallowMount, mount} from '@vue/test-utils'
-import TabsContent from '@/tabs-content.vue'
+import TabsContent from '../../src/datashow/tabs/tabs-content.vue'
 chai.use(sinonChai)
 
 describe('TabsContent', () => {
