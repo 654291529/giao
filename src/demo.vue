@@ -15,11 +15,11 @@
 </template>
 
 <script>
-  import Button from './button'
-  import Icon from './icon'
-  import Cascader from './cascader'
-  import db from './city-db'
-  import Popover from './popover'
+  import Button from './base/button/button'
+  import Icon from './base/icon/icon'
+  import Cascader from './form/cascader/cascader'
+  import db from './plugins/city-db'
+  import Popover from './notify/popover/popover'
 
   function ajax (parentId = 0) {
     return new Promise((success, fail) => {

@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import Icon from './icon'
-  import Springs from './springs'
+  import Icon from '../../base/icon/icon'
+  import Springs from '../../action/springs/springs'
   export default {
     name: "GearCollapseItem",
     components: {
@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../../var";
   $grey: grey;
   $border-radius: 4px;
   .collapseItem {

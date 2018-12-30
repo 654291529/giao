@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../../base/icon/icon'
 
   export default {
     name: 'GearSlides',

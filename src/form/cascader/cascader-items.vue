@@ -29,7 +29,7 @@
 
 
 <script>
-  import Icon from './icon'
+  import Icon from '../../base/icon/icon'
   export default {
     name: 'GearCascaderItems',
     components: {
@@ -110,7 +110,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "var";
+  @import "../../var";
   .cascaderItems {
     display: flex;
     align-items: flex-start;

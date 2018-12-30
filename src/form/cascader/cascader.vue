@@ -15,10 +15,10 @@
 </template>
 
 <script>
-  import Icon from './icon'
+  import Icon from '../../base/icon/icon'
   import CascaderItems from './cascader-items'
-  import ClickOutside from './click-outside'
-  import Springs from "./springs"
+  import ClickOutside from '../../plugins/click-outside'
+  import Springs from "../../action/springs/springs"
 
   export default {
     name: "GearCascader",
@@ -139,7 +139,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "var";
+  @import "../../var";
   .cascader {
     display: inline-block;
     font-size: $font-size;

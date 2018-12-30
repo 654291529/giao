@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import Springs from './springs'
+  import Springs from '../../action/springs/springs'
   export default {
     name: 'GearSider',
     components: {

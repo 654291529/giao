@@ -1,5 +1,5 @@
 /* 插件 让用户使用 */
-import  Toast from './toast'
+import  Toast from '../notify/toast/toast'
 
 let currentToast
 
