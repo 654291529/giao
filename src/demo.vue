@@ -10,8 +10,9 @@
     name: 'demo',
     components: {
     },
-    data(){
+    data() {
       return {}
+    }
   }
 </script>
 
