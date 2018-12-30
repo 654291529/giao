@@ -26,31 +26,8 @@ import Slides from './datashow/slides/slides'
 
 
 const components = [
-  Icon,
-  Button,
-  ButtonGroup,
-  Input,
-  Row,
-  Col,
-  Layout,
-  Header,
-  Sider,
-  Content,
-  Footer,
-  Toast,
-  plugin,
-  Tabs,
-  TabsItem,
-  TabsNav,
-  TabsPane,
-  TabsContent,
-  Popover,
-  Cascader,
-  CascaderItems,
-  Collapse,
-  CollapseItem,
-  Springs,
-  Slides
+  Icon, Button, ButtonGroup, Input, Row, Col, Layout, Header, Sider, Content, Footer, Toast, plugin, Tabs, TabsItem, TabsNav, TabsPane,
+  TabsContent, Popover, Cascader, CascaderItems, Collapse, CollapseItem, Springs, Slides
 ]
 
 
