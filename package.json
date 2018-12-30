@@ -1,6 +1,6 @@
 {
   "name": "gear-case",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "this is a UI frame.",
   "main": "dist/gearcase.umd.min.js",
   "scripts": {
