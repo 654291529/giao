@@ -139,7 +139,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../var";
+  @import "../../style/var";
   .cascader {
     display: inline-block;
     font-size: $font-size;

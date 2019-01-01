@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../var";
+  @import "../../style/var";
   $grey: grey;
   $border-radius: 4px;
   .collapseItem {
