@@ -1,6 +1,6 @@
 <template>
-  <div>
-
+  <div class="test">
+    测试
   </div>
 </template>
 
@@ -16,6 +16,10 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  @import "style/var";
+  .test {
+    color: $error-color;
+  }
 
 </style>
