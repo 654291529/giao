@@ -7,6 +7,12 @@
 <script>
   export default {
     name: 'GearNav',
+    // 依赖
+    provide() {
+      return {
+        root: this
+      }
+    },
     props: {
       selected: {
         type: Array,
@@ -17,6 +23,11 @@
         default: false
       }
     },
+    data() {
+      return {
+        items: []
+      }
+    },
     mounted() {
       this.updateChildren()
       this.listenToChildren()
@@ -24,12 +35,11 @@
     updated() {
       this.updateChildren()
     },
-    computed: {
-      items() {
-        return this.$children.filter(vm => vm.$options.name === 'GearNavItem')
-      }
-    },
     methods: {
+      // 接收到注入传递过来的实例并 push 到 items 数组中
+      addItem(vm) {
+        this.items.push(vm)
+      },
       updateChildren(){
         this.items.forEach(vm => {
           if (this.selected.indexOf(vm.name) >= 0) {

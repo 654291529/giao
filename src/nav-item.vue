@@ -7,6 +7,8 @@
 <script>
   export default {
     name: 'GearNavItem',
+    // 注入
+    inject: ['root'],
     props: {
       name: {
         type: String,
@@ -17,6 +19,10 @@
       return {
         selected: false
       }
+    },
+    created() {
+      // 将 实例 告知外部根节点
+      this.root.addItem(this)
     },
     methods: {
       handleClick() {

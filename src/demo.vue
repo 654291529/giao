@@ -2,7 +2,11 @@
   <div>
     <gear-nav :selected.sync="selected">
       <gear-nav-item name="home">首页</gear-nav-item>
-      <gear-nav-item name="about">关于</gear-nav-item>
+      <gear-nav-sub>
+        <template slot="title">关于</template>
+        <gear-nav-item name="about1">关于1</gear-nav-item>
+        <gear-nav-item name="about2">关于2</gear-nav-item>
+      </gear-nav-sub>
       <gear-nav-item name="me">我的</gear-nav-item>
     </gear-nav>
   </div>
@@ -18,11 +22,11 @@
     components: {
       'gear-nav': Nav,
       'gear-nav-item': NavItem,
-      'gear-sub-nav': NavSub
+      'gear-nav-sub': NavSub
     },
     data() {
       return {
-        selected: [ 'home' ]
+        selected: [ 'about1' ]
       }
     }
   }
