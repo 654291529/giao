@@ -1,9 +1,9 @@
 <template>
   <div class="gear-nav-sub">
-    <span>
+    <span @click="handleClick">
       <slot name="title"></slot>
     </span>
-    <div class="gear-nav-sub-popover">
+    <div class="gear-nav-sub-popover" v-show="open">
       <slot></slot>
     </div>
   </div>
@@ -11,14 +11,27 @@
 
 <script>
   export default {
-    name: 'GearNavSub'
+    name: 'GearNavSub',
+    data () {
+      return {
+        open: false
+      }
+    },
+    methods: {
+      handleClick () {
+        this.open = ! this.open
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   .gear-nav-sub {
     position: relative;
-    padding: 10px 20px;
+    > span {
+      padding: 10px 20px;
+      display: block;
+    }
     &-popover {
       position: absolute;
       top: 100%;
@@ -26,5 +39,10 @@
       border: 1px solid black;
       white-space: nowrap;
     }
+  }
+  .gear-nav-sub .gear-nav-sub .gear-nav-sub-popover {
+    top: 0;
+    left: 100%;
+    margin-left: 8px;
   }
 </style>

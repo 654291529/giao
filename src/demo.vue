@@ -4,8 +4,18 @@
       <gear-nav-item name="home">首页</gear-nav-item>
       <gear-nav-sub>
         <template slot="title">关于</template>
-        <gear-nav-item name="about1">关于1</gear-nav-item>
-        <gear-nav-item name="about2">关于2</gear-nav-item>
+        <gear-nav-item name="team">团队</gear-nav-item>
+        <gear-nav-item name="project">项目</gear-nav-item>
+        <gear-nav-sub>
+          <template slot="title">联系</template>
+          <gear-nav-item name="phone">手机</gear-nav-item>
+          <gear-nav-item name="github">Github</gear-nav-item>
+          <gear-nav-sub>
+            <template slot="title">社交</template>
+            <gear-nav-item name="wechat">微信</gear-nav-item>
+            <gear-nav-item name="weibo">微博</gear-nav-item>
+          </gear-nav-sub>
+        </gear-nav-sub>
       </gear-nav-sub>
       <gear-nav-item name="me">我的</gear-nav-item>
     </gear-nav>
