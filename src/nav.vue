@@ -1,5 +1,6 @@
 <template>
   <div class="gear-nav">
+    {{namePath}}
     <slot></slot>
   </div>
 </template>
@@ -25,7 +26,8 @@
     },
     data() {
       return {
-        items: []
+        items: [],
+        namePath: []
       }
     },
     mounted() {
@@ -72,8 +74,10 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "./style/var";
   .gear-nav {
     display: flex;
-    border: 1px solid red;
+    border-bottom: 1px solid $nav-bottom-line;
+    cursor: pointer;
   }
 </style>

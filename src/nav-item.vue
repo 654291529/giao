@@ -26,6 +26,8 @@
     },
     methods: {
       handleClick() {
+        this.root.namePath = []
+        this.$parent.updateNamePath && this.$parent.updateNamePath()
         this.$emit('add:selected', this.name)
       }
     }
@@ -33,10 +35,28 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "./style/var";
   .gear-nav-item {
+    position: relative;
     padding: 10px 20px;
     &.selected {
-      background: pink;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid $theme-color;
+        width: 100%;
+      }
+    }
+  }
+  // 第一层级再往下 不采用一级样式
+  .gear-nav-sub .gear-nav-item {
+    &.selected {
+      background: $nav-bottom-line;
+      &::after {
+        display: none;
+      }
     }
   }
 </style>
