@@ -79,5 +79,6 @@
     display: flex;
     border-bottom: 1px solid $nav-bottom-line;
     cursor: pointer;
+    user-select: none;
   }
 </style>
