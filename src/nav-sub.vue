@@ -2,9 +2,8 @@
   <div class="gear-nav-sub" :class="{ active }" v-click-outside="close">
     <span class="gear-nav-sub-label" @click="handleClick">
       <slot name="title"></slot>
-      <span class="gear-nav-sub-icon">
-        <gear-icon v-if="open" name="left"></gear-icon>
-        <gear-icon v-else name="right"></gear-icon>
+      <span class="gear-nav-sub-icon" :class="{ open }">
+        <gear-icon name="right"></gear-icon>
       </span>
     </span>
     <div class="gear-nav-sub-popover" v-show="open">
@@ -62,6 +61,10 @@
         } else {
 
         }
+        // 选中 nav-item 关闭 popover
+        if(this.open = true) {
+          this.close()
+        }
       }
     }
   }
@@ -105,6 +108,11 @@
 
   // 第二层级再往下 不采用一级样式
   .gear-nav-sub .gear-nav-sub {
+    &.active {
+      &::after {
+        display: none;
+      }
+    }
     .gear-nav-sub-popover {
       top: 0;
       left: 100%;
@@ -120,6 +128,10 @@
       vertical-align: middle;
       margin-left: 1em;
       svg { fill: #999 }
+      transition: transform 300ms;
+      &.open {
+        transform: rotate(180deg);
+      }
     }
   }
 

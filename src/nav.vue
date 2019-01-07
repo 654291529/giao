@@ -65,6 +65,7 @@
             } else {
               // 单选
               this.$emit('update:selected', [name])
+              console.log([name])
             }
           })
         })

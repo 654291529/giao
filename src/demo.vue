@@ -36,7 +36,7 @@
     },
     data() {
       return {
-        selected: [ 'about1' ]
+        selected: [ 'home' ]
       }
     }
   }
