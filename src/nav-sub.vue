@@ -84,13 +84,27 @@
           width: 100%;
         }
       }
+      .gear-nav-sub-icon {
+        display: none;
+      }
+    }
+    &-icon {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-left: 1em;
+      svg { fill: #999 }
+      transition: transform .3s;
+      &.vertical {
+        transform: rotate(90deg);
+        &.open {
+          transform: rotate(270deg);
+        }
+      }
     }
     &-label {
       padding: 10px 20px;
-      display: block;
-    }
-    &-icon {
-      display: none;
+      display: flex;
+      justify-content: space-between;
     }
     &-popover {
       font-size: $font-size;

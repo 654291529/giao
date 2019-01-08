@@ -54,6 +54,7 @@
     &.vertical {  transition: all .3s;
       &.selected {
         color: $theme-color;
+        background: $nav-selected-bg;
         transition: all .3s;
       }
     }
