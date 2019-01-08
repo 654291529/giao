@@ -1,7 +1,12 @@
 <template>
   <div>
-    <gear-nav :selected.sync="selected">
-      <gear-nav-item name="home">首页</gear-nav-item>
+    <gear-nav :selected.sync="selected" @update:selected="onChange">
+      <gear-nav-item name="home">
+        首页
+        <!--<a href="https://evenyao.com" target="_blank">-->
+          <!--首页-->
+        <!--</a>-->
+      </gear-nav-item>
       <gear-nav-sub name="about">
         <template slot="title">关于</template>
         <gear-nav-item name="team">团队</gear-nav-item>
@@ -52,20 +57,36 @@
   import Nav from './nav'
   import NavItem from './nav-item'
   import NavSub from './nav-sub'
+  import Toast from './notify/toast/toast'
+  import plugin from './plugins/plugin'
+  Vue.use(plugin)
+  import Vue from 'vue'
 
   export default {
     name: 'demo',
     components: {
       'gear-nav': Nav,
       'gear-nav-item': NavItem,
-      'gear-nav-sub': NavSub
+      'gear-nav-sub': NavSub,
+      'gear-toast': Toast
     },
     data() {
       return {
-        selected: [],
+        selected: '',
       }
     },
-    created() {
+    methods: {
+      onChange(selected) {
+        this.showToast(selected)
+      },
+      showToast(selected) {
+        this.$toast(selected + ' 被选中了', {
+          position: 'middle',
+          autoClose: 1,
+          enableHtml: false,
+          closeButton: false
+        })
+      },
     }
   }
 </script>

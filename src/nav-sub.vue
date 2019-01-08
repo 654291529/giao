@@ -1,8 +1,8 @@
 <template>
-  <div class="gear-nav-sub" :class="{ active }" v-click-outside="close">
+  <div class="gear-nav-sub" :class="{ active, vertical }" v-click-outside="close">
     <span class="gear-nav-sub-label" @click="handleClick">
       <slot name="title"></slot>
-      <span class="gear-nav-sub-icon" :class="{ open }">
+      <span class="gear-nav-sub-icon" :class="{ open, vertical }">
         <gear-icon name="right"></gear-icon>
       </span>
     </span>
@@ -73,14 +73,16 @@
 
   .gear-nav-sub {
     position: relative;
-    &.active {
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-bottom: 2px solid $theme-color;
-        width: 100%;
+    &:not(.vertical) {
+      &.active {
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-bottom: 2px solid $theme-color;
+          width: 100%;
+        }
       }
     }
     &-label {
@@ -133,6 +135,12 @@
       margin-left: 1em;
       svg { fill: #999 }
       transition: transform .3s;
+      &.vertical {
+        transform: rotate(90deg);
+        &.open {
+          transform: rotate(270deg);
+        }
+      }
       &.open {
         transform: rotate(180deg);
       }

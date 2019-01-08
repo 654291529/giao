@@ -1,5 +1,5 @@
 <template>
-  <div class="gear-nav-item" :class="{ selected }" @click="handleClick">
+  <div class="gear-nav-item" :class="{ selected, vertical }" @click="handleClick">
     <slot></slot>
   </div>
 </template>
@@ -8,7 +8,7 @@
   export default {
     name: 'GearNavItem',
     // 注入
-    inject: ['root'],
+    inject: ['root', 'vertical'],
     props: {
       name: {
         type: String,
@@ -28,7 +28,7 @@
       handleClick() {
         this.root.namePath = []
         this.$parent.updateNamePath && this.$parent.updateNamePath()
-        this.$emit('add:selected', this.name)
+        this.$emit('update:selected', this.name)
       }
     }
   }
@@ -39,19 +39,31 @@
   .gear-nav-item {
     position: relative;
     padding: 10px 20px;
-    &.selected {
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-bottom: 2px solid $theme-color;
-        width: 100%;
+    &:not(.vertical) {
+      &.selected {
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-bottom: 2px solid $theme-color;
+          width: 100%;
+        }
+      }
+    }
+    &.vertical {  transition: all .3s;
+      &.selected {
+        color: $theme-color;
+        transition: all .3s;
       }
     }
   }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   // 第一层级再往下 不采用一级样式
-  .gear-nav-sub .gear-nav-item {
+  .gear-nav-sub .gear-nav-item:not(.vertical) {
     &.selected {
       background: $nav-bottom-line;
       &::after {
