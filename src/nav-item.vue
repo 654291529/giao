@@ -26,7 +26,6 @@
     },
     methods: {
       handleClick() {
-        console.log(this.name)
         this.root.namePath = []
         this.$parent.updateNamePath && this.$parent.updateNamePath()
         this.$emit('add:selected', this.name)

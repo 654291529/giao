@@ -1,6 +1,5 @@
 <template>
-  <div class="gear-nav">
-    {{namePath}}
+  <div class="gear-nav" :class="{ vertical }">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +10,8 @@
     // 依赖
     provide() {
       return {
-        root: this
+        root: this,
+        vertical: this.vertical   // 注入 vertical , 为了让 nav-sub 组件读取
       }
     },
     props: {
@@ -20,6 +20,10 @@
         default: () => []
       },
       multiple: {
+        type: Boolean,
+        default: false
+      },
+      vertical: {
         type: Boolean,
         default: false
       }
@@ -65,7 +69,6 @@
             } else {
               // 单选
               this.$emit('update:selected', [name])
-              console.log([name])
             }
           })
         })
@@ -81,5 +84,10 @@
     border-bottom: 1px solid $nav-bottom-line;
     cursor: pointer;
     user-select: none;
+    &.vertical {
+      flex-direction: column;
+      width: 200px;
+      border: 1px solid $nav-bottom-line;
+    }
   }
 </style>

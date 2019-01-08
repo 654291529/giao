@@ -19,6 +19,32 @@
       </gear-nav-sub>
       <gear-nav-item name="me">我的</gear-nav-item>
     </gear-nav>
+
+    <div style="padding: 20px 0;">选中（开启）的标题：
+      <div class="selected-demo">{{selected}}</div>
+    </div>
+
+    <div style="margin-top: 100px;"></div>
+
+    <gear-nav :selected.sync="selected" vertical>
+      <gear-nav-item name="home">首页</gear-nav-item>
+      <gear-nav-sub name="about">
+        <template slot="title">关于</template>
+        <gear-nav-item name="team">团队</gear-nav-item>
+        <gear-nav-item name="project">项目</gear-nav-item>
+        <gear-nav-sub name="contacts">
+          <template slot="title">联系</template>
+          <gear-nav-item name="phone">手机</gear-nav-item>
+          <gear-nav-item name="github">Github</gear-nav-item>
+          <gear-nav-sub name="social">
+            <template slot="title">社交</template>
+            <gear-nav-item name="wechat">微信</gear-nav-item>
+            <gear-nav-item name="weibo">微博</gear-nav-item>
+          </gear-nav-sub>
+        </gear-nav-sub>
+      </gear-nav-sub>
+      <gear-nav-item name="me">我的</gear-nav-item>
+    </gear-nav>
   </div>
 </template>
 
@@ -36,8 +62,10 @@
     },
     data() {
       return {
-        selected: [ 'home' ]
+        selected: [],
       }
+    },
+    created() {
     }
   }
 </script>
@@ -48,5 +76,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  .selected-demo {
+    display: inline-flex;
+    color: #7b532b;
+    font-weight: bold;
   }
 </style>

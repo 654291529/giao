@@ -6,22 +6,23 @@
         <gear-icon name="right"></gear-icon>
       </span>
     </span>
-    <div class="gear-nav-sub-popover" v-show="open">
+    <gear-springs class="gear-nav-sub-popover" :visible="open" :class="{ vertical }">
       <slot></slot>
-    </div>
+    </gear-springs>
   </div>
 </template>
 
 <script>
   import ClickOutside from './plugins/click-outside'
   import Icon from './base/icon/icon'
-  // import Springs from './action/springs/springs'
+  import Springs from './action/springs/springs'
   export default {
     name: 'GearNavSub',
     components: {
       'gear-icon': Icon,
+      'gear-springs': Springs
     },
-    inject: ['root'],
+    inject: ['root', 'vertical'],
     directives: { ClickOutside },
     props: {
       name: {
@@ -29,9 +30,6 @@
         required: true
       }
     },
-    // components: {
-    //   'gear-springs': Springs
-    // },
     data() {
       return {
         open: false,
@@ -62,9 +60,9 @@
 
         }
         // 选中 nav-item 关闭 popover
-        if(this.open = true) {
-          this.close()
-        }
+        // if(this.open = true) {
+        //   this.close()
+        // }
       }
     }
   }
@@ -103,6 +101,12 @@
       box-shadow: 0 0 3px fade_out(black, .8);
       border-radius: $border-radius;
       min-width: 8em;
+      &.vertical {
+        position: static;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
     }
   }
 
@@ -128,7 +132,7 @@
       vertical-align: middle;
       margin-left: 1em;
       svg { fill: #999 }
-      transition: transform 300ms;
+      transition: transform .3s;
       &.open {
         transform: rotate(180deg);
       }
