@@ -12,7 +12,7 @@
     props: {
       name: {
         type: String,
-        require: true
+        required: true
       }
     },
     data() {

@@ -6,21 +6,29 @@
         <gear-icon name="right"></gear-icon>
       </span>
     </span>
-    <gear-springs class="gear-nav-sub-popover" :visible="open" :class="{ vertical }">
-      <slot></slot>
-    </gear-springs>
+    <template v-if="vertical">
+      <transition @enter="enter" @leave="leave" @after-leave="afterLeave"
+                  @after-enter="afterEnter">
+        <div class="gear-nav-sub-popover" v-show="open" :class="{ vertical }">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="gear-nav-sub-popover" v-show="open">
+        <slot></slot>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-  import ClickOutside from './plugins/click-outside'
   import Icon from './base/icon/icon'
-  import Springs from './action/springs/springs'
+  import ClickOutside from './plugins/click-outside'
   export default {
     name: 'GearNavSub',
     components: {
       'gear-icon': Icon,
-      'gear-springs': Springs
     },
     inject: ['root', 'vertical'],
     directives: { ClickOutside },
@@ -36,15 +44,35 @@
       }
     },
     computed: {
-      active: {
-        get: function () {
-          return this.root.namePath.indexOf(this.name) >= 0 ? true : false
-        },
-        set: function () {
-        }
+      active() {
+        return this.root.namePath.indexOf(this.name) >= 0 ? true : false
       }
     },
     methods: {
+      enter (el, done) {
+        let {height} = el.getBoundingClientRect()
+        el.style.height = 0
+        el.getBoundingClientRect()
+        el.style.height = `${height}px`
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterEnter (el) {
+        el.style.height = 'auto'
+      },
+      leave: function (el, done) {
+        let {height} = el.getBoundingClientRect()
+        el.style.height = `${height}px`
+        el.getBoundingClientRect()
+        el.style.height = 0
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterLeave: function (el) {
+        el.style.height = 'auto'
+      },
       handleClick() {
         this.open = !this.open
       },
@@ -52,7 +80,7 @@
         this.open = false
       },
       updateNamePath() {
-        this.active = true
+        // this.active = true
         this.root.namePath.unshift(this.name)
         if(this.$parent.updateNamePath) {
           this.$parent.updateNamePath()
@@ -104,9 +132,11 @@
     &-label {
       padding: 10px 20px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
     }
     &-popover {
+      transition: height 300ms;
       font-size: $font-size;
       background: white;
       position: absolute;
@@ -122,6 +152,7 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
+        overflow: hidden;
       }
     }
   }

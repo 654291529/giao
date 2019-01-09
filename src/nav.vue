@@ -1,5 +1,6 @@
 <template>
   <div class="gear-nav" :class="{ vertical }">
+    {{namePath}}
     <slot></slot>
   </div>
 </template>
