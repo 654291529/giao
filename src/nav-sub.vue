@@ -7,12 +7,11 @@
       </span>
     </span>
     <template v-if="vertical">
-      <transition @enter="enter" @leave="leave" @after-leave="afterLeave"
-                  @after-enter="afterEnter">
-        <div class="gear-nav-sub-popover" v-show="open" :class="{ vertical }">
+      <gear-springs :visible="open">
+        <div class="gear-nav-sub-popover" :class="{ vertical }">
           <slot></slot>
         </div>
-      </transition>
+      </gear-springs>
     </template>
     <template v-else>
       <div class="gear-nav-sub-popover" v-show="open">
@@ -24,11 +23,13 @@
 
 <script>
   import Icon from './base/icon/icon'
+  import Springs from './action/springs/springs'
   import ClickOutside from './plugins/click-outside'
   export default {
     name: 'GearNavSub',
     components: {
       'gear-icon': Icon,
+      'gear-springs': Springs
     },
     inject: ['root', 'vertical'],
     directives: { ClickOutside },
@@ -49,30 +50,6 @@
       }
     },
     methods: {
-      enter (el, done) {
-        let {height} = el.getBoundingClientRect()
-        el.style.height = 0
-        el.getBoundingClientRect()
-        el.style.height = `${height}px`
-        el.addEventListener('transitionend', () => {
-          done()
-        })
-      },
-      afterEnter (el) {
-        el.style.height = 'auto'
-      },
-      leave: function (el, done) {
-        let {height} = el.getBoundingClientRect()
-        el.style.height = `${height}px`
-        el.getBoundingClientRect()
-        el.style.height = 0
-        el.addEventListener('transitionend', () => {
-          done()
-        })
-      },
-      afterLeave: function (el) {
-        el.style.height = 'auto'
-      },
       handleClick() {
         this.open = !this.open
       },
@@ -152,7 +129,6 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
-        overflow: hidden;
       }
     }
   }
