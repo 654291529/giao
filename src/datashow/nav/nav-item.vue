@@ -35,12 +35,21 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "./style/var";
+  @import "../../style/var";
   .gear-nav-item {
+    color: #999;
     position: relative;
     padding: 10px 20px;
+    transition: all .3s;
+    &:hover {
+      transition: all .3s;
+      color: #000;
+      font-weight: bolder;
+    }
     &:not(.vertical) {
       &.selected {
+        font-weight: bolder;
+        color: #000;
         &::after {
           content: '';
           position: absolute;
@@ -53,6 +62,7 @@
     }
     &.vertical {  transition: all .3s;
       &.selected {
+        font-weight: bolder;
         color: $theme-color;
         background: $nav-selected-bg;
         transition: all .3s;

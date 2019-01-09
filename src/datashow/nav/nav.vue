@@ -1,6 +1,5 @@
 <template>
   <div class="gear-nav" :class="{ vertical }">
-    {{namePath}}
     <slot></slot>
   </div>
 </template>
@@ -63,7 +62,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "./style/var";
+  @import "../../style/var";
   .gear-nav {
     display: flex;
     border-bottom: 1px solid $nav-bottom-line;

@@ -7,11 +7,12 @@
       </span>
     </span>
     <template v-if="vertical">
-      <gear-springs :visible="open">
-        <div class="gear-nav-sub-popover" :class="{ vertical }">
+      <transition @enter="enter" @leave="leave" @after-leave="afterLeave"
+                  @after-enter="afterEnter">
+        <div class="gear-nav-sub-popover" v-show="open" :class="{ vertical }">
           <slot></slot>
         </div>
-      </gear-springs>
+      </transition>
     </template>
     <template v-else>
       <div class="gear-nav-sub-popover" v-show="open">
@@ -22,17 +23,16 @@
 </template>
 
 <script>
-  import Icon from './base/icon/icon'
-  import Springs from './action/springs/springs'
-  import ClickOutside from './plugins/click-outside'
+  import Icon from '../../base/icon/icon'
+  import ClickOutside from '../../plugins/click-outside'
+
   export default {
     name: 'GearNavSub',
     components: {
-      'gear-icon': Icon,
-      'gear-springs': Springs
+      'gear-icon': Icon
     },
     inject: ['root', 'vertical'],
-    directives: { ClickOutside },
+    directives: {ClickOutside},
     props: {
       name: {
         type: String,
@@ -50,6 +50,30 @@
       }
     },
     methods: {
+      enter (el, done) {
+        let {height} = el.getBoundingClientRect()
+        el.style.height = 0
+        el.getBoundingClientRect()
+        el.style.height = `${height}px`
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterEnter (el) {
+        el.style.height = 'auto'
+      },
+      leave: function (el, done) {
+        let {height} = el.getBoundingClientRect()
+        el.style.height = `${height}px`
+        el.getBoundingClientRect()
+        el.style.height = 0
+        el.addEventListener('transitionend', () => {
+          done()
+        })
+      },
+      afterLeave: function (el) {
+        el.style.height = 'auto'
+      },
       handleClick() {
         this.open = !this.open
       },
@@ -59,7 +83,7 @@
       updateNamePath() {
         // this.active = true
         this.root.namePath.unshift(this.name)
-        if(this.$parent.updateNamePath) {
+        if (this.$parent.updateNamePath) {
           this.$parent.updateNamePath()
         } else {
 
@@ -74,12 +98,25 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "./style/var";
+  @import "../../style/var";
 
   .gear-nav-sub {
+    color: #999;
+    transition: all .3s;
     position: relative;
+    &:hover {
+      color: #000;
+      font-weight: bolder;
+      transition: all .3s;
+    }
+    &.active {
+      color: #000;
+      font-weight: bolder;
+    }
     &:not(.vertical) {
       &.active {
+        color: #000;
+        font-weight: bolder;
         &::after {
           content: '';
           position: absolute;
@@ -97,7 +134,9 @@
       display: inline-flex;
       vertical-align: middle;
       margin-left: 1em;
-      svg { fill: #999 }
+      svg {
+        fill: #999
+      }
       transition: transform .3s;
       &.vertical {
         transform: rotate(90deg);
@@ -113,10 +152,12 @@
       justify-content: space-between;
     }
     &-popover {
-      transition: height 300ms;
+      transition: height .3s;
+      font-weight: normal;
       font-size: $font-size;
       background: white;
       position: absolute;
+      z-index: 9;
       top: 100%;
       left: 0;
       margin-top: 1px;
@@ -129,6 +170,7 @@
         border-radius: 0;
         border: none;
         box-shadow: none;
+        overflow: hidden;
       }
     }
   }
@@ -138,6 +180,13 @@
     &.active {
       &::after {
         display: none;
+      }
+    }
+    &.vertical {
+      .gear-nav-sub-popover {
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-left: 0px;
       }
     }
     .gear-nav-sub-popover {
@@ -154,7 +203,9 @@
       display: inline-flex;
       vertical-align: middle;
       margin-left: 1em;
-      svg { fill: #999 }
+      svg {
+        fill: #999
+      }
       transition: transform .3s;
       &.vertical {
         transform: rotate(90deg);
