@@ -1,93 +1,18 @@
 <template>
   <div>
-    <gear-nav :selected.sync="selected" @update:selected="onChange">
-      <gear-nav-item name="home">
-        首页
-        <!--<a href="https://evenyao.com" target="_blank">-->
-          <!--首页-->
-        <!--</a>-->
-      </gear-nav-item>
-      <gear-nav-sub name="about">
-        <template slot="title">关于</template>
-        <gear-nav-item name="team">团队</gear-nav-item>
-        <gear-nav-item name="project">项目</gear-nav-item>
-        <gear-nav-sub name="contacts">
-          <template slot="title">联系</template>
-          <gear-nav-item name="phone">手机</gear-nav-item>
-          <gear-nav-item name="github">Github</gear-nav-item>
-          <gear-nav-sub name="social">
-            <template slot="title">社交</template>
-            <gear-nav-item name="wechat">微信</gear-nav-item>
-            <gear-nav-item name="weibo">微博</gear-nav-item>
-          </gear-nav-sub>
-        </gear-nav-sub>
-      </gear-nav-sub>
-      <gear-nav-item name="me">我的</gear-nav-item>
-    </gear-nav>
 
-    <div style="padding: 20px 0;">选中（开启）的标题：
-      <div class="selected-demo">{{selected}}</div>
-    </div>
-
-    <div style="margin-top: 100px;"></div>
-
-    <gear-nav :selected.sync="selected" vertical>
-      <gear-nav-item name="home">首页</gear-nav-item>
-      <gear-nav-sub name="about">
-        <template slot="title">关于</template>
-        <gear-nav-item name="team">团队</gear-nav-item>
-        <gear-nav-item name="project">项目</gear-nav-item>
-        <gear-nav-sub name="contacts">
-          <template slot="title">联系</template>
-          <gear-nav-item name="phone">手机</gear-nav-item>
-          <gear-nav-item name="github">Github</gear-nav-item>
-          <gear-nav-sub name="social">
-            <template slot="title">社交</template>
-            <gear-nav-item name="wechat">微信</gear-nav-item>
-            <gear-nav-item name="weibo">微博</gear-nav-item>
-          </gear-nav-sub>
-        </gear-nav-sub>
-      </gear-nav-sub>
-      <gear-nav-item name="me">我的</gear-nav-item>
-    </gear-nav>
   </div>
 </template>
 
 <script>
-  import Nav from './nav'
-  import NavItem from './nav-item'
-  import NavSub from './nav-sub'
-  import Toast from './notify/toast/toast'
-  import plugin from './plugins/plugin'
-  Vue.use(plugin)
-  import Vue from 'vue'
 
   export default {
     name: 'demo',
-    components: {
-      'gear-nav': Nav,
-      'gear-nav-item': NavItem,
-      'gear-nav-sub': NavSub,
-      'gear-toast': Toast
-    },
     data() {
       return {
-        selected: '',
+
       }
     },
-    methods: {
-      onChange(selected) {
-        this.showToast(selected)
-      },
-      showToast(selected) {
-        this.$toast(selected + ' 被选中了', {
-          position: 'middle',
-          autoClose: 1,
-          enableHtml: false,
-          closeButton: false
-        })
-      },
-    }
   }
 </script>
 
