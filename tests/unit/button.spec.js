@@ -49,8 +49,9 @@ describe('Button', () => {
     expect(getComputedStyle(icon).order).to.eq('1')
   })
 
-  xit('设置 iconPosition 可以改变 order', () => {
+  it('设置 iconPosition 可以改变 order', () => {
     const wrapper = mount(Button, {
+      attachToDocument: true,
       propsData: {
         icon: 'setting',
         iconPosition: 'right'
