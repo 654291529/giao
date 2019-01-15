@@ -1,13 +1,16 @@
 <template>
   <div>
-
+    <gear-pagination :total-page="20" :current-page="10"></gear-pagination>
   </div>
 </template>
 
 <script>
-
+  import Pagination from './pagination'
   export default {
     name: 'demo',
+    components: {
+      'gear-pagination': Pagination
+    },
     data() {
       return {
 
@@ -22,11 +25,5 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-
-  .selected-demo {
-    display: inline-flex;
-    color: #7b532b;
-    font-weight: bold;
   }
 </style>
