@@ -1,6 +1,6 @@
 <template>
   <div class="gear-pagination">
-    <span v-for="page in pages">
+    <span v-for="page in pages" class="gear-pagination-item" :class="{ active : page === currentPage, separator: page === '...' }">
       {{page}}
     </span>
   </div>
@@ -33,7 +33,7 @@
         } else {
           prev.push(current)
         }
-        return
+        return prev
       },[])
 
       return {
@@ -58,5 +58,31 @@
 </script>
 
 <style lang="scss" scoped>
-
+  @import "./style/var";
+  .gear-pagination {
+    &-item {
+      border: 1px solid $pagination-item-border;
+      border-radius: $border-radius;
+      /*padding: 0 4px;*/
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      min-width: 30px;
+      height: 30px;
+      margin: 0 4px;
+      cursor: pointer;
+      user-select: none;
+      &.active, &:hover {
+        border-color: $theme-color;
+      }
+      &.active {
+        cursor: default;
+      }
+      &.separator {
+        border: none;
+        cursor: default;
+      }
+    }
+  }
 </style>
