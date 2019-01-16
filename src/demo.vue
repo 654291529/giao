@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gear-pagination :total-page="20" :current-page="10"></gear-pagination>
+    <gear-pagination :total-page="20" :current-page="20"></gear-pagination>
   </div>
 </template>
 
