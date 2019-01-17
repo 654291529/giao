@@ -1,5 +1,5 @@
 <template>
-  <div class="gear-pagination">
+  <div class="gear-pagination" :class="{ hide: hideSinglePage === true && totalPage <= 1 }">
     <span class="gear-pagination-nav prev" :class="{ disabled: currentPage === 1}"
           @click="onClickPage(currentPage - 1)">
       <gear-icon class="icon" name="left"></gear-icon>
@@ -91,6 +91,9 @@
 <style lang="scss" scoped>
   @import "./style/var";
   .gear-pagination {
+    &.hide {
+      display: none;
+    }
     &-item {
       border: 1px solid $pagination-item-border;
       border-radius: $border-radius;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gear-pagination :total-page="20" :current-page.sync="currentPage"></gear-pagination>
+    <gear-pagination :total-page="1" :current-page.sync="currentPage" :hideSinglePage="false"></gear-pagination>
   </div>
 </template>
 
