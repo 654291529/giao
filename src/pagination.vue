@@ -1,12 +1,16 @@
 <template>
   <div class="gear-pagination">
-    <span class="gear-pagination-nav prev" :class="{ disabled: currentPage === 1}">
+    <span class="gear-pagination-nav prev" :class="{ disabled: currentPage === 1}"
+          @click="onClickPage(currentPage - 1)">
       <gear-icon class="icon" name="left"></gear-icon>
     </span>
-    <span v-for="page in pages" class="gear-pagination-item" :class="{ active : page === currentPage, separator: page === '...' }">
+    <span v-for="page in pages" class="gear-pagination-item"
+          :class="{ active : page === currentPage, separator: page === '...' }"
+          @click="onClickPage(page)">
       {{page}}
     </span>
-    <span class="gear-pagination-nav next" :class="{ disabled: currentPage === totalPage }">
+    <span class="gear-pagination-nav next" :class="{ disabled: currentPage === totalPage }"
+          @click="onClickPage(currentPage + 1)">
       <gear-icon class="icon" name="right"></gear-icon>
     </span>
   </div>
@@ -44,8 +48,21 @@
           array[index + 1] !== undefined && array[index + 1] - array[index] > 1 && prev.push('...')
           return prev
         }, [])
+        return pages
       }
     },
+    methods: {
+      onClickPage(page) {
+        if(page === '...') {
+          console.log('不是page')
+        } else {
+          if(page >=1 && page <= this.totalPage) {
+            console.log(page)
+            this.$emit('update:currentPage',page)
+          }
+        }
+      }
+    }
   }
 
   // 去重函数

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <gear-pagination :total-page="20" :current-page="20"></gear-pagination>
+    <gear-pagination :total-page="9" :current-page.sync="currentPage"></gear-pagination>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
     },
     data() {
       return {
-
+        currentPage: 1
       }
     },
   }
