@@ -39,16 +39,25 @@
     },
     computed: {
       // 依赖 totalPage 和 currentPage
-      pages () {
-        return unique([1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2]
-        .filter((n) => n >= 1 && n <= this.totalPage)
-        .sort((a, b) => a - b))
-        .reduce((prev, current, index, array) => {
-          prev.push(current)
-          array[index + 1] !== undefined && array[index + 1] - array[index] > 1 && prev.push('...')
-          return prev
-        }, [])
-        return pages
+      pages() {
+        let array = [1, this.totalPage, this.currentPage, this.currentPage - 1, this.currentPage - 2, this.currentPage + 1, this.currentPage + 2];
+        if (this.currentPage <= 5) {
+          array = [1, 2, 3, 4, 5, 6, 7, this.currentPage + 1, this.currentPage + 2, this.totalPage];
+        }
+        if (this.currentPage >= this.totalPage - 4) {
+          array = [1, this.totalPage, this.currentPage, this.totalPage - 1, this.totalPage - 2, this.totalPage - 3, this.totalPage - 4, this.totalPage - 5, this.totalPage - 6];
+        }
+        array = unique(array.sort((a, b) => a - b));
+        let pages = array.reduce((prev, current, index, array) => {
+          prev.push(current);
+          let length = prev.length;
+          // 前后大于 2 时, 添加 ...
+          if (prev[length - 2] && current - prev[length - 2] > 2) {
+            prev.splice(prev.length - 1, 0, '...');
+          }
+          return prev;
+        }, []);
+        return pages = pages.filter(n => (n >= 1 && n <= this.totalPage) || n === '...');
       }
     },
     methods: {
