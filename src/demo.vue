@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Pagination from './pagination'
+  import Pagination from './navigation/pagination/pagination'
   export default {
     name: 'demo',
     components: {
