@@ -10,7 +10,7 @@ https://gearcase-ui.cn
 ![](https://img-1257191344.cos.ap-chengdu.myqcloud.com/gear.png)
 ![](https://img-1257191344.cos.ap-chengdu.myqcloud.com/case.png)
 
-`GearCase UI` 是一套简易的组件库。是本人在学习 `Vue` 过程中构建的一个基于 `Vue` 的 `UI` 框架。整合了基础、表单、布局、展示、通知等一系列常用组件，适合移动端和 `PC` 端使用。
+`GearCase UI` 是一套简易的组件库。是本人在学习 `Vue` 过程中构建的一个基于 `Vue` 的 `UI` 框架。整合了基础、表单、布局、展示、导航、通知、动画等一系列常用组件，适合移动端和 `PC` 端使用。
 
 组件的样式结构、`API` 属性的设计参考了诸如 `Element UI`、`Ant Design` 等成熟的 `UI` 框架。
 
@@ -38,6 +38,7 @@ https://gearcase-ui.cn
 - Springs 伸展动画
 - Slides 轮播幻灯片
 - Nav 导航菜单
+- Pagination 分页器
 
 > 其他组件轮子持续更新中... 
   
