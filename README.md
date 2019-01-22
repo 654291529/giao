@@ -40,8 +40,8 @@ https://gearcase-ui.cn
 - Nav 导航菜单
 - Pagination 分页器
 
-> 其他组件轮子持续更新中... 
-  
+> 其他组件轮子持续更新中...
+
 
 ## 交流
 

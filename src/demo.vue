@@ -1,19 +1,39 @@
 <template>
   <div>
-    <gear-pagination :total-page="1" :current-page.sync="currentPage" :hideSinglePage="false"></gear-pagination>
+    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false"></gear-table>
   </div>
 </template>
 
 <script>
-  import Pagination from './navigation/pagination/pagination'
+  import Table from './datashow/table/table'
   export default {
     name: 'demo',
     components: {
-      'gear-pagination': Pagination
+      'gear-table': Table
     },
     data() {
       return {
-        currentPage: 1
+        columns: [
+          { text: '姓名', field: 'name' },
+          { text: '号码', field: 'score' },
+        ],
+        dataSource: [
+          { id: 1, name: '保罗·乔治', score: 13 },
+          { id: 2, name: '斯蒂文·亚当时', score: 12 },
+          { id: 3, name: '德翁特·伯顿', score: 30 },
+          { id: 4, name: '拉塞尔·威斯布鲁克', score: 0 },
+          { id: 5, name: '帕特里克·帕特森', score: 54 },
+          { id: 6, name: '特伦斯·弗格森', score: 23 },
+          { id: 7, name: '丹尼·斯罗德', score: 17 },
+          { id: 8, name: '杰拉米·格兰特', score: 9 },
+          { id: 9, name: '阿卜杜勒·纳德', score: 11 },
+          { id: 10, name: '安德烈·罗伯森', score: 21 },
+          { id: 11, name: '雷蒙德·菲尔顿', score: 2 },
+          { id: 12, name: '诺伦斯·诺埃尔', score: 3 },
+          { id: 13, name: '哈米杜·迪亚洛', score: 6 },
+          { id: 14, name: '亚历克斯·阿布里内斯', score: 8 },
+          { id: 15, name: '蒂莫特·鲁瓦乌·卡巴洛特', score: 7 },
+        ]
       }
     },
   }
