@@ -1,6 +1,7 @@
 <template>
   <div>
-    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false"></gear-table>
+    {{selected}}
+    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" @changeCheckBox="x"></gear-table>
   </div>
 </template>
 
@@ -33,9 +34,24 @@
           { id: 13, name: '哈米杜·迪亚洛', score: 6 },
           { id: 14, name: '亚历克斯·阿布里内斯', score: 8 },
           { id: 15, name: '蒂莫特·鲁瓦乌·卡巴洛特', score: 7 },
-        ]
+        ],
+        selected: []
       }
     },
+    methods: {
+      x(object) {
+        let { selected ,item, index } = object
+        console.log(selected)
+        console.log(item)
+        console.log(index)
+        if(selected){
+          this.selected.push(item)
+        } else {
+          let index = this.selected.indexOf(item)
+          this.selected.splice(index,1)
+        }
+      }
+    }
   }
 </script>
 
