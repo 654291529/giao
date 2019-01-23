@@ -1,7 +1,7 @@
 <template>
   <div>
     {{selected}}
-    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" @changeCheckBox="x"></gear-table>
+    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"></gear-table>
   </div>
 </template>
 
@@ -39,18 +39,7 @@
       }
     },
     methods: {
-      x(object) {
-        let { selected ,item, index } = object
-        console.log(selected)
-        console.log(item)
-        console.log(index)
-        if(selected){
-          this.selected.push(item)
-        } else {
-          let index = this.selected.indexOf(item)
-          this.selected.splice(index,1)
-        }
-      }
+
     }
   }
 </script>
