@@ -3,7 +3,7 @@
     <table class="gear-table" :class="{ bordered, compact, striped }">
       <thead>
         <tr>
-          <th><input type="checkbox" @change="onChangeAll" ref="allChecked"></th>
+          <th><input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected"></th>
           <th v-if="numberVisible">#</th>
           <th v-for="column in columns" :key="column.field">
             {{column.text}}
@@ -80,6 +80,12 @@
         } else {
           this.$refs.allChecked.indeterminate = true // 开启 checkbox 半选样式
         }
+      }
+    },
+    computed: {
+      // 所有都被选中
+      isAllSelected(){
+        return this.dataSource.length === this.selectedItems.length
       }
     },
     methods: {
