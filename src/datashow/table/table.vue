@@ -85,7 +85,23 @@
     computed: {
       // 所有都被选中
       isAllSelected(){
-        return this.dataSource.length === this.selectedItems.length
+        // 当前显示数据的 id
+        const a = this.dataSource.map(item => item.id).sort()
+        // 用户选中数据的 id
+        const b = this.selectedItems.map(item => item.id).sort()
+        // 对比
+        if(a.length === b.length) {
+          let equal = true
+          for(let i = 0; i < a.length; i++) {
+            if(a[i] !== b[i]) {
+              equal = false
+              break
+            }
+          }
+          return equal
+        } else {
+          return false
+        }
       }
     },
     methods: {
