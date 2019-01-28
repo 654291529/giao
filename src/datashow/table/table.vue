@@ -8,11 +8,9 @@
           <th v-for="column in columns" :key="column.field">
             <div class="gear-table-header">
               {{column.text}}
-            <span v-if="column.field in sortRules" class="gear-table-sorter">
-             <gear-icon name="sortup" :class="{ active: sortRules[column.field] === 'asc' }"
-                        @click="changeSortRules(column.field, 'asc')"></gear-icon>
-             <gear-icon name="sortdown" :class="{ active: sortRules[column.field] === 'desc' }"
-                        @click="changeSortRules(column.field, 'desc')"></gear-icon>
+            <span v-if="column.field in sortRules" class="gear-table-sorter" @click="changeSortRules(column.field)">
+             <gear-icon name="sortup" :class="{ active: sortRules[column.field] === 'asc' }"></gear-icon>
+             <gear-icon name="sortdown" :class="{ active: sortRules[column.field] === 'desc' }"></gear-icon>
             </span>
             </div>
           </th>
@@ -144,9 +142,16 @@
         }
       },
       // 排序
-      changeSortRules(key, value) {
+      changeSortRules(key) {
         const copy = JSON.parse(JSON.stringify(this.sortRules))
-        copy[key] = value
+        let oldValue = copy[key]
+        if(oldValue === 'asc') {
+          copy[key] = 'desc'
+        } else if (oldValue === 'desc') {
+          copy[key] = true
+        } else {
+          copy[key] = 'asc'
+        }
         this.$emit('update:sortRules', copy)
       }
     }
