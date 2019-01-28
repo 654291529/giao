@@ -2,7 +2,8 @@
   <div>
     {{selected}}
     <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"
-                :sort-rules.sync="sortRules"></gear-table>
+                :sort-rules.sync="sortRules"
+                @update:sortRules="updateTable"></gear-table>
   </div>
 </template>
 
@@ -43,7 +44,11 @@
       }
     },
     methods: {
-
+      // 监听 sortRules 的 update 事件
+      updateTable() {
+        // 改方法可以为一个 ajax 请求，从后端拿取最新排序的数据
+        this.dataSource = this.dataSource.sort((a,b) => a.score - b.score)
+      }
     }
   }
 </script>
