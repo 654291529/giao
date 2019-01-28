@@ -1,7 +1,8 @@
 <template>
   <div>
     {{selected}}
-    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"></gear-table>
+    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"
+                :sort-rules.sync="sortRules"></gear-table>
   </div>
 </template>
 
@@ -18,6 +19,9 @@
           { text: '姓名', field: 'name' },
           { text: '号码', field: 'score' },
         ],
+        sortRules: {
+          score: 'desc'
+        },
         dataSource: [
           { id: 1, name: '保罗·乔治', score: 13 },
           { id: 2, name: '斯蒂文·亚当时', score: 12 },

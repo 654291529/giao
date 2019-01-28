@@ -6,7 +6,15 @@
           <th><input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected"></th>
           <th v-if="numberVisible">#</th>
           <th v-for="column in columns" :key="column.field">
-            {{column.text}}
+            <div class="gear-table-header">
+              {{column.text}}
+            <span v-if="column.field in sortRules" class="gear-table-sorter">
+             <gear-icon name="sortup" :class="{ active: sortRules[column.field] === 'asc' }"
+                        @click="changeSortRules(column.field, 'asc')"></gear-icon>
+             <gear-icon name="sortdown" :class="{ active: sortRules[column.field] === 'desc' }"
+                        @click="changeSortRules(column.field, 'desc')"></gear-icon>
+            </span>
+            </div>
           </th>
         </tr>
       </thead>
@@ -27,8 +35,12 @@
 </template>
 
 <script>
+  import Icon from '../../base/icon/icon'
   export default {
     name: 'GearTable',
+    components: {
+      'gear-icon': Icon
+    },
     props: {
       selectedItems: {
         type: Array,
@@ -68,6 +80,11 @@
       striped: {
         type: Boolean,
         default: true
+      },
+      // 排序规则
+      sortRules: {
+        type: Object,
+        default: () => ({}),
       }
     },
     watch: {
@@ -125,6 +142,12 @@
         } else {
           this.$emit('update:selectedItems', [])
         }
+      },
+      // 排序
+      changeSortRules(key, value) {
+        const copy = JSON.parse(JSON.stringify(this.sortRules))
+        copy[key] = value
+        this.$emit('update:sortRules', copy)
       }
     }
   }
@@ -165,6 +188,24 @@
       border-bottom: 1px solid $grey;
       text-align: left;
       padding: 8px;
+    }
+    &-header {
+      display: flex;
+      align-items: center;
+    }
+    &-sorter {
+      display: inline-flex;
+      flex-direction: column;
+      margin: 0 4px;
+      svg {
+        width: 8px;
+        height: 8px;
+        fill: $grey;
+        cursor: pointer;
+        &.active {
+          fill: $theme-color;
+        }
+      }
     }
   }
 
