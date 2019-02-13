@@ -3,7 +3,7 @@
     {{selected}}
     <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"
                 :sort-rules.sync="sortRules"
-                @update:sortRules="updateTable"></gear-table>
+                @update:sortRules="updateTable" :loading="loading"></gear-table>
   </div>
 </template>
 
@@ -23,6 +23,7 @@
         sortRules: {
           score: 'desc'
         },
+        loading: false,
         dataSource: [
           { id: 1, name: '保罗·乔治', score: 13 },
           { id: 2, name: '斯蒂文·亚当时', score: 12 },
@@ -46,8 +47,13 @@
     methods: {
       // 监听 sortRules 的 update 事件
       updateTable() {
-        // 改方法可以为一个 ajax 请求，从后端拿取最新排序的数据
-        this.dataSource = this.dataSource.sort((a,b) => a.score - b.score)
+        // loading
+        this.loading = true
+        setTimeout(() => {
+          // 改方法可以为一个 ajax 请求，从后端拿取最新排序的数据 此处用 setTimeout 模拟 ajax 请求延时
+          this.dataSource = this.dataSource.sort((a,b) => a.score - b.score)
+          this.loading = false
+        },1000)
       }
     }
   }

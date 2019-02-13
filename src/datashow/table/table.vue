@@ -29,6 +29,9 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="loading" class="gear-table-loading">
+      <gear-icon name="loading"></gear-icon>
+    </div>
   </div>
 </template>
 
@@ -83,6 +86,10 @@
       sortRules: {
         type: Object,
         default: () => ({}),
+      },
+      loading: {
+        type: Boolean,
+        default: false
       }
     },
     watch: {
@@ -210,6 +217,25 @@
         &.active {
           fill: $theme-color;
         }
+      }
+    }
+    &-wrapper {
+      position: relative;
+    }
+    &-loading {
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        width: 50px;
+        height: 50px;
+        @include spin;
       }
     }
   }
