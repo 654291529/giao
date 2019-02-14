@@ -1,34 +1,36 @@
 <template>
-  <div class="gear-table-wrapper">
-    <table class="gear-table" :class="{ bordered, compact, striped }">
-      <thead>
+  <div class="gear-table-wrapper" ref="tableWrapper">
+    <div :style="{ height: height , overflow: 'auto' }">
+      <table class="gear-table" :class="{ bordered, compact, striped }" ref="table">
+        <thead>
         <tr>
           <th><input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected"></th>
           <th v-if="numberVisible">#</th>
           <th v-for="column in columns" :key="column.field">
             <div class="gear-table-header">
               {{column.text}}
-            <span v-if="column.field in sortRules" class="gear-table-sorter" @click="changeSortRules(column.field)">
+              <span v-if="column.field in sortRules" class="gear-table-sorter" @click="changeSortRules(column.field)">
              <gear-icon name="sortup" :class="{ active: sortRules[column.field] === 'asc' }"></gear-icon>
              <gear-icon name="sortdown" :class="{ active: sortRules[column.field] === 'desc' }"></gear-icon>
             </span>
             </div>
           </th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr v-for="item,index in dataSource" :key="item.id">
           <th>
             <input type="checkbox" @change="onChangeCheckBox(item, index, $event)"
-            :checked="inSelectedItems(item)">
+                   :checked="inSelectedItems(item)">
           </th>
           <td v-if="numberVisible">{{index + 1}}</td>
           <template v-for="column in columns">
             <td :key="column.field">{{item[column.field]}}</td>
           </template>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
     <div v-if="loading" class="gear-table-loading">
       <gear-icon name="loading"></gear-icon>
     </div>
@@ -78,6 +80,7 @@
         type: Boolean,
         default: false
       },
+      // 奇偶行背景色
       striped: {
         type: Boolean,
         default: true
@@ -87,10 +90,29 @@
         type: Object,
         default: () => ({}),
       },
+      // 加载效果
       loading: {
         type: Boolean,
         default: false
+      },
+      height: {
+        type: [Number ,String]
       }
+    },
+    mounted() {
+      let table2 = this.$refs.table.cloneNode(true)
+      this.table2 = table2
+      table2.classList.add('gear-table-copy')
+      this.$refs.tableWrapper.appendChild(table2)
+      this.updateHeaderWidth()
+      this.onWindowResize = () => this.updateHeaderWidth()
+      window.addEventListener('resize', () => {
+        this.updateHeaderWidth()
+      })
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.onWindowResize)
+      this.table2.remove()
     },
     watch: {
       selectedItems() {
@@ -160,6 +182,22 @@
           copy[key] = 'asc'
         }
         this.$emit('update:sortRules', copy)
+      },
+      updateHeaderWidth() {
+        let table2 = this.table2
+        let tableHeader = Array.from(this.$refs.table.children).filter(node => node.tagName.toLowerCase() === 'thead')[0]
+        let tableHeader2
+        Array.from(table2.children).map(node => {
+          if(node.tagName.toLowerCase() !== 'thead'){
+            node.remove()
+          } else {
+            tableHeader2 = node
+          }
+        })
+        Array.from(tableHeader.children[0].children).map((th,index) => {
+          const {width} = th.getBoundingClientRect()
+          tableHeader2.children[0].children[index].style.width = width + 'px'
+        })
       }
     }
   }
@@ -221,6 +259,7 @@
     }
     &-wrapper {
       position: relative;
+      overflow: auto;
     }
     &-loading {
       position: absolute;
@@ -237,6 +276,13 @@
         height: 50px;
         @include spin;
       }
+    }
+    &-copy {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #FFF;
     }
   }
 

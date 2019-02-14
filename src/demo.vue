@@ -1,9 +1,9 @@
 <template>
   <div>
     {{selected}}
-    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="false" :selected-items.sync="selected"
+    <gear-table :columns="columns" :data-source="dataSource" bordered :striped="true" :selected-items.sync="selected"
                 :sort-rules.sync="sortRules"
-                @update:sortRules="updateTable" :loading="loading"></gear-table>
+                @update:sortRules="updateTable" :loading="loading" height="400px "></gear-table>
   </div>
 </template>
 
