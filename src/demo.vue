@@ -3,7 +3,7 @@
     {{selected}}
     <gear-table :columns="columns" :data-source="dataSource" bordered :striped="true" :selected-items.sync="selected"
                 :sort-rules.sync="sortRules"
-                @update:sortRules="updateTable" :loading="loading" height="400px "></gear-table>
+                @update:sortRules="updateTable" :loading="loading" :height="400"></gear-table>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
     data() {
       return {
         columns: [
-          { text: '姓名', field: 'name' },
+          { text: '姓名', field: 'name', width: 200 },
           { text: '号码', field: 'score' },
         ],
         sortRules: {

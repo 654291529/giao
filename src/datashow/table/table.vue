@@ -1,12 +1,14 @@
 <template>
   <div class="gear-table-wrapper" ref="tableWrapper">
-    <div :style="{ height: height , overflow: 'auto' }">
+    <div :style="{ height: height , overflow: 'auto' }" ref="tableWrapperOther">
       <table class="gear-table" :class="{ bordered, compact, striped }" ref="table">
         <thead>
         <tr>
-          <th><input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected"></th>
-          <th v-if="numberVisible">#</th>
-          <th v-for="column in columns" :key="column.field">
+          <th :style="{width: '50px'}">
+            <input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected">
+          </th>
+          <th :style="{width: '50px'}" v-if="numberVisible">#</th>
+          <th :style="{width: column.width + 'px'}" v-for="column in columns" :key="column.field">
             <div class="gear-table-header">
               {{column.text}}
               <span v-if="column.field in sortRules" class="gear-table-sorter" @click="changeSortRules(column.field)">
@@ -19,13 +21,13 @@
         </thead>
         <tbody>
         <tr v-for="item,index in dataSource" :key="item.id">
-          <th>
+          <th :style="{width: '50px'}">
             <input type="checkbox" @change="onChangeCheckBox(item, index, $event)"
                    :checked="inSelectedItems(item)">
           </th>
-          <td v-if="numberVisible">{{index + 1}}</td>
+          <td :style="{width: '50px'}" v-if="numberVisible">{{index + 1}}</td>
           <template v-for="column in columns">
-            <td :key="column.field">{{item[column.field]}}</td>
+            <td :style="{width: column.width + 'px'}" :key="column.field">{{item[column.field]}}</td>
           </template>
         </tr>
         </tbody>
@@ -96,22 +98,23 @@
         default: false
       },
       height: {
-        type: [Number ,String]
+        type: Number
       }
     },
     mounted() {
-      let table2 = this.$refs.table.cloneNode(true)
+      let table2 = this.$refs.table.cloneNode(false)
       this.table2 = table2
       table2.classList.add('gear-table-copy')
+      let thead = this.$refs.table.children[0]
+      // 将 tr 整体下移一个 height 的高度
+      let {height} = thead.getBoundingClientRect()
+      // 将滚动条的高度下移一个 height 的高度
+      this.$refs.tableWrapperOther.style.marginTop = height + 'px'
+      this.$refs.tableWrapperOther.style.height = this.height - height + 'px'
+      table2.appendChild(thead)
       this.$refs.tableWrapper.appendChild(table2)
-      this.updateHeaderWidth()
-      this.onWindowResize = () => this.updateHeaderWidth()
-      window.addEventListener('resize', () => {
-        this.updateHeaderWidth()
-      })
     },
     beforeDestroy() {
-      window.removeEventListener('resize', this.onWindowResize)
       this.table2.remove()
     },
     watch: {
@@ -183,38 +186,12 @@
         }
         this.$emit('update:sortRules', copy)
       },
-      // 实时计算宽度
-      updateHeaderWidth() {
-        let table2 = this.table2
-        let tableHeader = Array.from(this.$refs.table.children).filter(node => node.tagName.toLowerCase() === 'thead')[0]
-        let tableHeader2
-        Array.from(table2.children).map(node => {
-          if(node.tagName.toLowerCase() !== 'thead'){
-            node.remove()
-          } else {
-            tableHeader2 = node
-          }
-        })
-        Array.from(tableHeader.children[0].children).map((th,index) => {
-          const {width} = th.getBoundingClientRect()
-          tableHeader2.children[0].children[index].style.width = width + 'px'
-        })
-      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
   @import "../../style/var";
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  /*更新宽度之后 设置滚动条宽度 让其不影响宽度计算 但只在 Chrome 有效*/
-  ::-webkit-scrollbar { width: 1px; }
-  ::-webkit-scrollbar-thumb:vertical { background-color: $grey; }
-
   $grey: lighten($grey,40%);
   .gear-table {
     width: 100%;
