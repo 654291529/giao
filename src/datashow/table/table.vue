@@ -183,6 +183,7 @@
         }
         this.$emit('update:sortRules', copy)
       },
+      // 实时计算宽度
       updateHeaderWidth() {
         let table2 = this.table2
         let tableHeader = Array.from(this.$refs.table.children).filter(node => node.tagName.toLowerCase() === 'thead')[0]
@@ -205,6 +206,15 @@
 
 <style lang="scss" scoped>
   @import "../../style/var";
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /*更新宽度之后 设置滚动条宽度 让其不影响宽度计算 但只在 Chrome 有效*/
+  ::-webkit-scrollbar { width: 1px; }
+  ::-webkit-scrollbar-thumb:vertical { background-color: $grey; }
+
   $grey: lighten($grey,40%);
   .gear-table {
     width: 100%;
@@ -285,5 +295,4 @@
       background: #FFF;
     }
   }
-
 </style>
