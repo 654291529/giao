@@ -3,7 +3,7 @@
     {{selected}}
     <gear-table :columns="columns" :data-source="dataSource" bordered :striped="true" :selected-items.sync="selected"
                 :sort-rules.sync="sortRules"
-                @update:sortRules="updateTable" :loading="loading" :height="400"></gear-table>
+                @update:sortRules="updateTable" :loading="loading" :height="400" expend-field="description"></gear-table>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
     data() {
       return {
         columns: [
-          { text: '姓名', field: 'name', width: 200 },
+          { text: '姓名', field: 'name', width: 300 },
           { text: '号码', field: 'score' },
         ],
         sortRules: {
@@ -25,10 +25,10 @@
         },
         loading: false,
         dataSource: [
-          { id: 1, name: '保罗·乔治', score: 13 },
-          { id: 2, name: '斯蒂文·亚当时', score: 12 },
+          { id: 1, name: '保罗·乔治', score: 13, description: 'xxx xxx' },
+          { id: 2, name: '斯蒂文·亚当时', score: 12, description: 'yyy yyy' },
           { id: 3, name: '德翁特·伯顿', score: 30 },
-          { id: 4, name: '拉塞尔·威斯布鲁克', score: 0 },
+          { id: 4, name: '拉塞尔·威斯布鲁克', score: 0, description: 'zzz zzz' },
           { id: 5, name: '帕特里克·帕特森', score: 54 },
           { id: 6, name: '特伦斯·弗格森', score: 23 },
           { id: 7, name: '丹尼·斯罗德', score: 17 },

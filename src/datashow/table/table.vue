@@ -4,7 +4,8 @@
       <table class="gear-table" :class="{ bordered, compact, striped }" ref="table">
         <thead>
         <tr>
-          <th :style="{width: '50px'}">
+          <th :style="{width: '20px'}" class="gear-table-center"></th>
+          <th :style="{width: '20px'}" class="gear-table-center">
             <input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected">
           </th>
           <th :style="{width: '50px'}" v-if="numberVisible">#</th>
@@ -20,16 +21,29 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item,index in dataSource" :key="item.id">
-          <th :style="{width: '50px'}">
-            <input type="checkbox" @change="onChangeCheckBox(item, index, $event)"
-                   :checked="inSelectedItems(item)">
-          </th>
-          <td :style="{width: '50px'}" v-if="numberVisible">{{index + 1}}</td>
-          <template v-for="column in columns">
-            <td :style="{width: column.width + 'px'}" :key="column.field">{{item[column.field]}}</td>
-          </template>
-        </tr>
+        <template v-for="item,index in dataSource">
+          <tr :key="item.id">
+            <td :style="{width: '20px'}" class="gear-table-center">
+              <gear-icon class="gear-table-expend-icon" name="right" :class="{ active: isActive == item.id }"
+                         @click="expendItem(item.id)"></gear-icon>
+            </td>
+            <td :style="{width: '20px'}" class="gear-table-center">
+              <input type="checkbox" @change="onChangeCheckBox(item, index, $event)"
+                     :checked="inSelectedItems(item)">
+            </td>
+            <td :style="{width: '50px'}" v-if="numberVisible">{{index + 1}}</td>
+            <template v-for="column in columns">
+              <td :style="{width: column.width + 'px'}" :key="column.field">{{item[column.field]}}</td>
+            </template>
+          </tr>
+          <tr v-if="inExpendedId(item.id)" :key="`${item.id}-expend`">
+            <td :style="{width: '20px'}"></td>
+            <td :style="{width: '20px'}"></td>
+            <td :colspan="columns.length">
+              {{item[expendField] || '空'}}
+            </td>
+          </tr>
+        </template>
         </tbody>
       </table>
     </div>
@@ -45,6 +59,13 @@
     name: 'GearTable',
     components: {
       'gear-icon': Icon
+    },
+    data(){
+      return {
+        isActive: false,
+        // 判断 expendField 是否展开
+        expendedId: []
+      }
     },
     props: {
       selectedItems: {
@@ -99,6 +120,10 @@
       },
       height: {
         type: Number
+      },
+      // 展开行功能
+      expendField: {
+        type: String
       }
     },
     mounted() {
@@ -186,6 +211,20 @@
         }
         this.$emit('update:sortRules', copy)
       },
+      // 展开 expend
+      expendItem(id) {
+        if(this.inExpendedId(id)){
+          this.expendedId.splice(this.expendedId.indexOf(id),1)
+          this.isActive = false
+        } else {
+          this.expendedId.push(id)
+          this.isActive = id
+        }
+      },
+      // 检查是否展开
+      inExpendedId(id) {
+        return this.expendedId.indexOf(id) >= 0
+      }
     }
   }
 </script>
@@ -270,6 +309,18 @@
       left: 0;
       width: 100%;
       background: #FFF;
+    }
+    &-expend-icon {
+      width: 12px;
+      height: 12px;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .active {
+      transform: rotateZ(90deg);
+    }
+    &-center {
+      text-align: center !important;
     }
   }
 </style>
