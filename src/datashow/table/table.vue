@@ -24,7 +24,8 @@
         <template v-for="item,index in dataSource">
           <tr :key="item.id">
             <td :style="{width: '20px'}" class="gear-table-center">
-              <gear-icon class="gear-table-expend-icon" name="right" :class="{ active: isActive == item.id }"
+              <gear-icon class="gear-table-expend-icon" name="right"
+                         v-if="dataSource[index].description" :class="{ active: isActive == item.id }"
                          @click="expendItem(item.id)"></gear-icon>
             </td>
             <td :style="{width: '20px'}" class="gear-table-center">
