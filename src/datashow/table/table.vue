@@ -4,9 +4,8 @@
       <table class="gear-table" :class="{ bordered, compact, striped }" ref="table">
         <thead>
         <tr>
-          <th :style="{width: '20px'}" class="gear-table-center"></th>
-          <th :style="{width: '20px'}" class="gear-table-center">
-            <input type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected">
+          <th :style="{width: '40px'}">
+            <input class="checkbox" type="checkbox" @change="onChangeAll" ref="allChecked" :checked="isAllSelected">
           </th>
           <th :style="{width: '50px'}" v-if="numberVisible">#</th>
           <th :style="{width: column.width + 'px'}" v-for="column in columns" :key="column.field">
@@ -23,14 +22,12 @@
         <tbody>
         <template v-for="item,index in dataSource">
           <tr :key="item.id">
-            <td :style="{width: '20px'}" class="gear-table-center">
+            <td :style="{width: '40px'}">
+              <input class="checkbox" type="checkbox" @change="onChangeCheckBox(item, index, $event)"
+                     :checked="inSelectedItems(item)">
               <gear-icon class="gear-table-expend-icon" name="right"
                          v-if="dataSource[index].description" :class="{ active: isActive == item.id }"
                          @click="expendItem(item.id)"></gear-icon>
-            </td>
-            <td :style="{width: '20px'}" class="gear-table-center">
-              <input type="checkbox" @change="onChangeCheckBox(item, index, $event)"
-                     :checked="inSelectedItems(item)">
             </td>
             <td :style="{width: '50px'}" v-if="numberVisible">{{index + 1}}</td>
             <template v-for="column in columns">
@@ -38,8 +35,7 @@
             </template>
           </tr>
           <tr v-if="inExpendedId(item.id)" :key="`${item.id}-expend`">
-            <td :style="{width: '20px'}"></td>
-            <td :style="{width: '20px'}"></td>
+            <td :style="{width: '20px', borderRight: '1px solid transparent'}"></td>
             <td :colspan="columns.length">
               {{item[expendField] || '空'}}
             </td>
@@ -56,9 +52,11 @@
 
 <script>
   import Icon from '../../base/icon/icon'
+  import Springs from "../../action/springs/springs"
   export default {
     name: 'GearTable',
     components: {
+      'gear-springs': Springs,
       'gear-icon': Icon
     },
     data(){
@@ -312,16 +310,23 @@
       background: #FFF;
     }
     &-expend-icon {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
       transition: all .3s;
+      vertical-align: middle;
+      position: relative;
+      left: 7px;
     }
     .active {
       transform: rotateZ(90deg);
     }
     &-center {
       text-align: center !important;
+    }
+
+    .checkbox {
+      vertical-align: middle;
     }
   }
 </style>
