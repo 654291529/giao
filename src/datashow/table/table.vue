@@ -17,7 +17,7 @@
             </span>
             </div>
           </th>
-          <th>
+          <th ref="actionsHeader" v-if="$scopedSlots.default">
           </th>
         </tr>
         </thead>
@@ -35,8 +35,10 @@
             <template v-for="column in columns">
               <td :style="{width: column.width + 'px'}" :key="column.field">{{item[column.field]}}</td>
             </template>
-            <td>
-              <slot :item="item"></slot>
+            <td v-if="$scopedSlots.default">
+              <div ref="actions" style="display: inline-block;">
+                <slot :item="item"></slot>
+              </div>
             </td>
           </tr>
           <tr v-if="inExpendedId(item.id)" :key="`${item.id}-expend`">
@@ -142,6 +144,24 @@
       this.$refs.tableWrapperOther.style.height = this.height - height + 'px'
       table2.appendChild(thead)
       this.$refs.tableWrapper.appendChild(table2)
+
+      if(this.$scopedSlots.default) {
+        let div = this.$refs.actions[0]
+        let {width} = div.getBoundingClientRect()
+        let parent = div.parentNode
+        let styles = getComputedStyle(parent)
+        let paddingLeft = styles.getPropertyValue('padding-left')
+        let paddingRight = styles.getPropertyValue('padding-right')
+        let borderLeft = styles.getPropertyValue('border-left-width')
+        let borderRight = styles.getPropertyValue('border-left-width')
+        console.log(paddingLeft,paddingRight,borderLeft,borderRight)
+        let width2 = width + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight) + 'px'
+        this.$refs.actionsHeader.style.width = width2
+        // 对其所有 actions div
+        this.$refs.actions.map(div => {
+          div.parentNode.style.width = width2
+        })
+      }
     },
     beforeDestroy() {
       this.table2.remove()

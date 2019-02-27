@@ -1,7 +1,7 @@
 # GearCase UI
 [![Build Status](https://www.travis-ci.org/evenyao/GearCase.svg?branch=master)](https://www.travis-ci.org/evenyao/GearCase)
 ![Cocoapods](https://img.shields.io/cocoapods/l/AFNetworking.svg)
-![GearCase](https://img.shields.io/badge/gearcase-0.2.16-orange.svg)
+![GearCase](https://img.shields.io/badge/gearcase-0.2.17-orange.svg)
 
 ## 文档
 https://gearcase-ui.cn
@@ -39,6 +39,7 @@ https://gearcase-ui.cn
 - Slides 轮播幻灯片
 - Nav 导航菜单
 - Pagination 分页器
+- Table 表格
 
 > 其他组件轮子持续更新中...
 
