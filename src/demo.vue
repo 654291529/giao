@@ -3,7 +3,12 @@
     {{selected}}
     <gear-table :columns="columns" :data-source="dataSource" bordered :striped="true" :selected-items.sync="selected"
                 :sort-rules.sync="sortRules"
-                @update:sortRules="updateTable" :loading="loading" :height="400" expend-field="description"></gear-table>
+                @update:sortRules="updateTable" :loading="loading" :height="400" expend-field="description">
+      <template slot-scope="xxx">
+        <button @click="edit(xxx.item)">编辑</button>
+        <button @click="view(xxx.item)">查看</button>
+      </template>
+    </gear-table>
   </div>
 </template>
 
@@ -18,7 +23,7 @@
       return {
         columns: [
           { text: '姓名', field: 'name', width: 300 },
-          { text: '号码', field: 'score' },
+          { text: '号码', field: 'score', width: 600 },
         ],
         sortRules: {
           score: 'desc'
@@ -26,7 +31,7 @@
         loading: false,
         dataSource: [
           { id: 1, name: '保罗·乔治', score: 13, description: 'xxx xxx' },
-          { id: 2, name: '斯蒂文·亚当时', score: 12, description: 'yyy yyy' },
+          { id: 2, name: '斯蒂文·亚当斯', score: 12, description: 'yyy yyy' },
           { id: 3, name: '德翁特·伯顿', score: 30 },
           { id: 4, name: '拉塞尔·威斯布鲁克', score: 0, description: 'zzz zzz' },
           { id: 5, name: '帕特里克·帕特森', score: 54 },
@@ -45,6 +50,14 @@
       }
     },
     methods: {
+      // 编辑事件
+      edit(item) {
+        alert(`编辑${item.id}`)
+      },
+      // 查看事件
+      view(item) {
+        alert(`查看${item.id}`)
+      },
       // 监听 sortRules 的 update 事件
       updateTable() {
         // loading
