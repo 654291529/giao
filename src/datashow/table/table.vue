@@ -26,7 +26,7 @@
               <input class="checkbox" type="checkbox" @change="onChangeCheckBox(item, index, $event)"
                      :checked="inSelectedItems(item)">
               <gear-icon class="gear-table-expend-icon" name="right"
-                         v-if="dataSource[index].description" :class="{ active: isActive == item.id }"
+                         v-if="dataSource[index].description" :class="{ open: isActive == item.id }"
                          @click="expendItem(item.id)"></gear-icon>
             </td>
             <td :style="{width: '50px'}" v-if="numberVisible">{{index + 1}}</td>
@@ -318,7 +318,7 @@
       position: relative;
       left: 7px;
     }
-    .active {
+    .open {
       transform: rotateZ(90deg);
     }
     &-center {
